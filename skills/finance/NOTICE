@@ -1,0 +1,17 @@
+Stock Advisor Pro
+Copyright 2026 rohitjz
+
+This product includes software adapted from:
+
+  Claude for Financial Services (anthropics/financial-services)
+  https://github.com/anthropics/financial-services
+  Copyright Anthropic, PBC. Licensed under the Apache License, Version 2.0.
+
+The agent and skill definitions in this repository are derivative works of the
+above. Notable changes: data integrations were moved from paid enterprise
+connectors (S&P Capital IQ, FactSet, Daloopa, Bloomberg, Morningstar,
+PitchBook, and others) to free market-data sources (TradingView, Financial
+Datasets), and Office/Excel automation was replaced with markdown output.
+
+This software is for educational and informational purposes only and is not
+financial advice.

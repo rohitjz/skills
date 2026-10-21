@@ -1,0 +1,30 @@
+[
+  {
+    "id": "leadership-metric-drop",
+    "task": "Tell your leadership team that onboarding completion dropped and what you will do about it.",
+    "audience": "leadership team (VP and skip-level)",
+    "without": "Hi team, I wanted to quickly reach out to flag that it's important to note our onboarding completion rate has been trending downward somewhat over the past quarter. There are a number of factors that could potentially be contributing to this, and I think it's crucial that we delve into the data to better understand the underlying dynamics. I believe there may be some opportunities here for us to leverage to improve the situation going forward. Happy to discuss further and align on next steps whenever works. Let me know your thoughts!",
+    "with": "Onboarding completion fell 9% last quarter, from 71% to 62%. The drop is concentrated in mobile signups, where a new identity-check step is timing out. I want to ship a fix before Q3 planning locks on the 30th. That needs one engineer for a week. Can I pull Priya from the activation squad?"
+  },
+  {
+    "id": "team-process-change",
+    "task": "Announce to your team that you are starting a weekly 30-minute design review.",
+    "audience": "your product and engineering team",
+    "without": "Hi all, As part of our ongoing commitment to excellence and continuous improvement, I am pleased to announce that we will be implementing a new weekly design review process. This initiative will serve as a crucial forum to foster collaboration, ensure alignment, and showcase the great work being done across the team. Attendance is expected. I am confident this will be a transformative step in our journey toward operational excellence. Please find a recurring invite on your calendars.",
+    "with": "We keep catching design gaps late, usually in code review, where they are expensive to fix. So let's catch them earlier. Starting Thursday, we will spend 30 minutes every week looking at in-progress designs together. Bring something rough; that is the whole point. It is on your calendars. If a week is quiet, we will cancel it."
+  },
+  {
+    "id": "explainer-tech-debt",
+    "task": "Explain to non-technical stakeholders why you are delaying a feature to pay down technical debt.",
+    "audience": "non-technical business stakeholders",
+    "without": "We have made the strategic decision to prioritize the remediation of accumulated technical debt in the current development cycle. While this will result in the deprioritization of certain customer-facing feature deliverables, it represents a necessary investment in the long-term scalability and maintainability of our platform architecture. Technical debt, if left unaddressed, can lead to increased systemic risk and a degradation of engineering velocity over time.",
+    "with": "Picture renovating a house where every new room you add tangles the wiring a little more. Add enough rooms, and the lights start flickering in all of them. That is where our codebase is. We can ship the next feature now, but each one is getting slower and riskier to build on a foundation we keep patching. So we are spending two weeks rewiring before we add the next room. You will see fewer features this sprint, and faster, steadier ones after."
+  },
+  {
+    "id": "customer-launch-email",
+    "task": "Announce a new feature, Saved Views, to customers.",
+    "audience": "customers (general users of a SaaS product)",
+    "without": "We are thrilled and excited to announce the launch of our latest groundbreaking feature: Saved Views! This innovative new capability leverages cutting-edge functionality to empower users to optimize and streamline their workflows. With Saved Views, you can now seamlessly customize and curate your experience like never before. We are confident this will revolutionize the way you work. Log in today to explore all the exciting possibilities that await!",
+    "with": "You can now save a view. Set up the filters and columns you reach for every morning, give it a name, and it is one click away next time. No more rebuilding the same report at 9am. Open any list, arrange it how you like, and hit Save view. Your saved views live in the left sidebar."
+  }
+]

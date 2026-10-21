@@ -1,0 +1,135 @@
+{
+  "judge_model": "gpt-4o",
+  "max_per_sample": 30,
+  "n_samples": 4,
+  "aggregate": {
+    "without": 44,
+    "with": 115
+  },
+  "rows": [
+    {
+      "id": "leadership-metric-drop",
+      "task": "Tell your leadership team that onboarding completion dropped and what you will do about it.",
+      "audience": "leadership team (VP and skip-level)",
+      "without": {
+        "scores": {
+          "lead_strength": 1,
+          "concision": 1,
+          "concreteness": 1,
+          "clarity_of_ask": 1,
+          "voice_no_ai_tells": 2,
+          "reader_fit": 2
+        },
+        "total": 8,
+        "words": 94,
+        "ai_tells": 13
+      },
+      "with": {
+        "scores": {
+          "lead_strength": 5,
+          "concision": 5,
+          "concreteness": 5,
+          "clarity_of_ask": 5,
+          "voice_no_ai_tells": 5,
+          "reader_fit": 5
+        },
+        "total": 30,
+        "words": 54,
+        "ai_tells": 0
+      }
+    },
+    {
+      "id": "team-process-change",
+      "task": "Announce to your team that you are starting a weekly 30-minute design review.",
+      "audience": "your product and engineering team",
+      "without": {
+        "scores": {
+          "lead_strength": 2,
+          "concision": 2,
+          "concreteness": 1,
+          "clarity_of_ask": 3,
+          "voice_no_ai_tells": 2,
+          "reader_fit": 3
+        },
+        "total": 13,
+        "words": 78,
+        "ai_tells": 8
+      },
+      "with": {
+        "scores": {
+          "lead_strength": 5,
+          "concision": 5,
+          "concreteness": 5,
+          "clarity_of_ask": 5,
+          "voice_no_ai_tells": 5,
+          "reader_fit": 5
+        },
+        "total": 30,
+        "words": 59,
+        "ai_tells": 0
+      }
+    },
+    {
+      "id": "explainer-tech-debt",
+      "task": "Explain to non-technical stakeholders why you are delaying a feature to pay down technical debt.",
+      "audience": "non-technical business stakeholders",
+      "without": {
+        "scores": {
+          "lead_strength": 3,
+          "concision": 3,
+          "concreteness": 2,
+          "clarity_of_ask": 1,
+          "voice_no_ai_tells": 4,
+          "reader_fit": 3
+        },
+        "total": 16,
+        "words": 67,
+        "ai_tells": 0
+      },
+      "with": {
+        "scores": {
+          "lead_strength": 4,
+          "concision": 4,
+          "concreteness": 3,
+          "clarity_of_ask": 5,
+          "voice_no_ai_tells": 5,
+          "reader_fit": 5
+        },
+        "total": 26,
+        "words": 82,
+        "ai_tells": 0
+      }
+    },
+    {
+      "id": "customer-launch-email",
+      "task": "Announce a new feature, Saved Views, to customers.",
+      "audience": "customers (general users of a SaaS product)",
+      "without": {
+        "scores": {
+          "lead_strength": 1,
+          "concision": 1,
+          "concreteness": 1,
+          "clarity_of_ask": 2,
+          "voice_no_ai_tells": 0,
+          "reader_fit": 2
+        },
+        "total": 7,
+        "words": 69,
+        "ai_tells": 12
+      },
+      "with": {
+        "scores": {
+          "lead_strength": 5,
+          "concision": 5,
+          "concreteness": 4,
+          "clarity_of_ask": 5,
+          "voice_no_ai_tells": 5,
+          "reader_fit": 5
+        },
+        "total": 29,
+        "words": 57,
+        "ai_tells": 0
+      }
+    }
+  ]
+}

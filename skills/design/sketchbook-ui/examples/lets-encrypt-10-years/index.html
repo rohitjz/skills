@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>Ten years of Let's Encrypt, redrawn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/sketchbook.css">
+<style>
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin:-14px 0 30px}
+  .brand{font-family:var(--hand);font-weight:700;font-size:26px;display:flex;align-items:center;gap:8px}
+  .brand svg{width:26px;height:28px}
+  .hero-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+  .hero-row .now{margin:0}
+  .pct{font-size:.5em}
+  .quote{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin:34px 0 8px}
+  .quote .sticky{flex:0 0 280px}
+  .quote p{flex:1;min-width:240px;margin:0}
+  .ctas{display:flex;gap:16px;flex-wrap:wrap;margin:22px 0 4px}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="pencil"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+  <symbol id="arrow" viewBox="0 0 34 22"><path class="blue" d="M2 12 C 10 9, 20 13, 30 11 M23 4 L31 11 L23 18"/></symbol>
+  <symbol id="tick" viewBox="0 0 34 30"><path class="blue" d="M3 16 C 7 19, 10 23, 13 27 C 18 17, 25 8, 32 2" style="stroke-width:3"/></symbol>
+  <symbol id="house" viewBox="0 0 56 58"><path class="ink" d="M7 27 L28 6 L49 26 M11 24 L11 54 L46 55 L45 23 M23 55 L23 39 L33 39 L33 55 M15 31 h6 v6 h-6z"/></symbol>
+  <symbol id="lock" viewBox="0 0 40 44"><path class="ink" d="M10 20 V13 C10 6, 30 6, 30 13 V20 M6 20 C 14 19, 26 21, 34 20 L34 40 C 26 41, 14 39, 6 40 Z M20 27 V33"/></symbol>
+  <symbol id="big-arrow" viewBox="0 0 74 34"><path class="ink" d="M3 19 C 20 14, 45 22, 66 16 M54 6 L68 16 L55 27" style="stroke-width:2.6"/></symbol>
+  <symbol id="strike" viewBox="0 0 200 34" preserveAspectRatio="none"><path class="ink" d="M2 20 C 50 12, 120 24, 198 10 M6 26 C 70 18, 140 22, 194 16" style="stroke-width:3"/></symbol>
+  <symbol id="uline" viewBox="0 0 300 14" preserveAspectRatio="none"><path class="blue" d="M2 8 C 60 2, 120 12, 180 6 S 260 4, 298 9"/></symbol>
+  <symbol id="circle" viewBox="0 0 120 50" preserveAspectRatio="none"><path class="redink" d="M70 4 C 30 2, 4 12, 5 26 C 6 42, 50 48, 84 44 C 110 40, 118 26, 112 15 C 104 4, 70 2, 44 7"/></symbol>
+</svg>
+
+<main class="sheet">
+
+  <header class="topbar">
+    <div class="brand"><svg aria-hidden="true"><use href="#lock"/></svg>Let's Encrypt, redrawn</div>
+    <nav class="nav" aria-label="Sources">
+      <a href="https://letsencrypt.org/2025/12/09/10-years.html">Original post</a>
+      <a href="https://letsencrypt.org/stats/">Live stats</a>
+    </nav>
+  </header>
+
+  <div class="kicker">Ten years of free certificates, Dec 2025</div>
+
+  <div class="hand was strike">under 30%<svg aria-hidden="true"><use href="#strike"/></svg></div>
+  <div class="hero-row">
+    <h1 class="hand now"><span class="hl">80%</span></h1>
+  </div>
+
+  <p class="lede">of web page loads are now encrypted. When Let's Encrypt started, it was under 30%. That share, not the certificate count, is the number that measures the mission.</p>
+  <p>Let's Encrypt is a free, automated certificate authority run by the nonprofit ISRG. Ten years after its first certificate, it is the largest certificate authority in the world, and it is closing in on <span class="circled">one billion<svg aria-hidden="true"><use href="#circle"/></svg></span> websites.</p>
+
+  <h2>A decade of growth<svg class="uline" aria-hidden="true"><use href="#uline"/></svg></h2>
+
+  <section class="sk" aria-label="Active domains">
+    <div style="font-weight:700">Active domains protected</div>
+    <div class="big"><span class="from">0</span><svg aria-hidden="true"><use href="#big-arrow"/></svg><span>762M</span></div>
+    <div class="note">and on track for 1 billion</div>
+
+    <div class="sub prime">
+      <div class="v"><small>1M &rarr;</small> 10M</div>
+      <div class="t"><b>Certificates issued per day.</b> The first million-certificate day came in September 2018. The first ten-million day came in September 2025.</div>
+    </div>
+    <div class="sub">
+      <div class="v">8.3B</div>
+      <div class="t"><b>Certificates issued in total.</b> Each one expires and is replaced automatically, so the total runs far ahead of active sites.</div>
+    </div>
+
+    <figure class="taped" style="margin:26px -16px 6px;padding:18px 6px 8px">
+      <span class="tape l" aria-hidden="true"></span><span class="tape r" aria-hidden="true"></span>
+      <img src="chart.png" alt="Active domains with a Let's Encrypt certificate, from launch in late 2015 to 762 million on December 9, 2025, with callouts at the 1 millionth certificate, 1 million certificates a day, the 1 billionth certificate, and 10 million certificates a day.">
+    </figure>
+    <div class="caption" style="margin-bottom:4px">Active domains, daily. Source: Let's Encrypt public stats.</div>
+  </section>
+
+  <p style="margin-top:26px"><b>Features shipped along the way.</b></p>
+  <ul class="grid">
+    <li class="sk check"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>
+      <div class="m">International domain names</div><div class="v">2016</div><div class="d">any script</div></li>
+    <li class="sk check"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>
+      <div class="m">Wildcard certificates</div><div class="v">2018</div><div class="d">*.example.com</div></li>
+    <li class="sk check"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>
+      <div class="m">Short-lived and IP certs</div><div class="v">2025</div><div class="d">days, not months</div></li>
+  </ul>
+
+  <h2>Milestones<svg class="uline" aria-hidden="true"><use href="#uline"/></svg></h2>
+  <ol class="timeline">
+    <li><span class="when">Nov 2014</span>Project announced.</li>
+    <li class="key"><span class="when">Sep 2015</span>First publicly trusted certificate goes live.</li>
+    <li><span class="when">Mar 2016</span>One millionth certificate.</li>
+    <li><span class="when">Jun 2017</span>100 millionth certificate.</li>
+    <li><span class="when">Sep 2018</span>One million certificates in a single day.</li>
+    <li class="key"><span class="when">Feb 2020</span>One billionth certificate.</li>
+    <li><span class="when">Sep 2025</span>Ten million certificates in a single day.</li>
+  </ol>
+
+  <div class="quote">
+    <div class="sticky">The better it works, the easier it is to take for granted.</div>
+    <p>Automation means most site owners never think about certificates. The post's point: that success can make the work invisible, and invisible work is hard to fund.</p>
+  </div>
+
+  <h2>It took a village<svg class="uline" aria-hidden="true"><use href="#uline"/></svg></h2>
+  <div class="village" aria-hidden="true">
+    <div class="house"><svg><use href="#house"/></svg><span>Mozilla</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>EFF</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>Cisco</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>Akamai</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>IdenTrust</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>sponsors</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>donors</span></div>
+    <div class="house"><svg><use href="#house"/></svg><span>&amp; every site owner</span></div>
+  </div>
+  <p>Five founding sponsors backed an ambitious idea: Mozilla, EFF, Cisco, Akamai and IdenTrust. IdenTrust's cross-signature made the very first trusted certificate possible. Sponsors, donors and millions of site owners did the rest.</p>
+
+  <div class="signoff">On to the next ten years.</div>
+  <div class="ctas">
+    <a class="btn" href="https://letsencrypt.org/donate/">Donate</a>
+    <a class="btn ghost" href="https://www.abetterinternet.org/sponsor/">Become a sponsor</a>
+  </div>
+
+  <p class="foot">An unofficial sketchbook redesign of <a href="https://letsencrypt.org/2025/12/09/10-years.html">"10 Years of Let's Encrypt Certificates"</a> (Dec 9, 2025), made as an example for the sketchbook-ui skill. Not affiliated with Let's Encrypt or ISRG. Figures come from the post and the public <a href="https://letsencrypt.org/stats/">Let's Encrypt stats</a> through Dec 9, 2025. Let's Encrypt is a trademark of ISRG.</p>
+</main>
+</body>
+</html>

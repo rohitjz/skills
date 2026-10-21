@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<title>{{TITLE}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sketchbook.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- wobble filter applied to pencil borders -->
+  <filter id="pencil"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+  <symbol id="arrow" viewBox="0 0 34 22"><path class="blue" d="M2 12 C 10 9, 20 13, 30 11 M23 4 L31 11 L23 18"/></symbol>
+  <symbol id="tick" viewBox="0 0 34 30"><path class="blue" d="M3 16 C 7 19, 10 23, 13 27 C 18 17, 25 8, 32 2" style="stroke-width:3"/></symbol>
+  <symbol id="house" viewBox="0 0 56 58"><path class="ink" d="M7 27 L28 6 L49 26 M11 24 L11 54 L46 55 L45 23 M23 55 L23 39 L33 39 L33 55 M15 31 h6 v6 h-6z"/></symbol>
+  <symbol id="star" viewBox="0 0 40 40"><path class="ink" d="M20 3 L24.5 15 L37 15.5 L27 23.5 L31 36 L20 28.5 L9 36 L13 23.5 L3 15.5 L15.5 15 Z"/></symbol>
+  <symbol id="lock" viewBox="0 0 40 44"><path class="ink" d="M10 20 V13 C10 6, 30 6, 30 13 V20 M6 20 C 14 19, 26 21, 34 20 L34 40 C 26 41, 14 39, 6 40 Z M20 27 V33"/></symbol>
+  <symbol id="big-arrow" viewBox="0 0 74 34"><path class="ink" d="M3 19 C 20 14, 45 22, 66 16 M54 6 L68 16 L55 27" style="stroke-width:2.6"/></symbol>
+  <!-- stretchable marks: use inside .strike / .circled / h2 with preserveAspectRatio="none" -->
+  <symbol id="strike" viewBox="0 0 200 34" preserveAspectRatio="none"><path class="ink" d="M2 20 C 50 12, 120 24, 198 10 M6 26 C 70 18, 140 22, 194 16" style="stroke-width:3"/></symbol>
+  <symbol id="uline" viewBox="0 0 300 14" preserveAspectRatio="none"><path class="blue" d="M2 8 C 60 2, 120 12, 180 6 S 260 4, 298 9"/></symbol>
+  <symbol id="circle" viewBox="0 0 120 50" preserveAspectRatio="none"><path class="redink" d="M70 4 C 30 2, 4 12, 5 26 C 6 42, 50 48, 84 44 C 110 40, 118 26, 112 15 C 104 4, 70 2, 44 7"/></symbol>
+</svg>
+
+<main class="sheet">
+  <!-- 1. Kicker: who and when -->
+  <div class="kicker">{{KICKER}}</div>
+
+  <!-- 2. Hero: old number struck through, new number highlighted -->
+  <div class="hand was strike">{{OLD_NUMBER}}<svg aria-hidden="true"><use href="#strike"/></svg></div>
+  <h1 class="hand now"><span class="hl">{{NEW_NUMBER}}</span></h1>
+  <p class="lede">{{LEDE}}</p>
+  <p>{{DRIVERS}}</p>
+
+  <!-- 3. Headline metric box: big number, sub-metrics, taped chart -->
+  <h2>{{SECTION_1}}<svg class="uline" aria-hidden="true"><use href="#uline"/></svg></h2>
+  <section class="sk">
+    <div style="font-weight:700">{{METRIC_NAME}}</div>
+    <div class="big"><span class="from">{{METRIC_FROM}}</span><svg aria-hidden="true"><use href="#big-arrow"/></svg><span>{{METRIC_TO}}</span></div>
+    <div class="note">{{METRIC_NOTE}}</div>
+    <div class="sub prime"><div class="v"><small>{{A_FROM}} &rarr;</small> {{A_TO}}</div><div class="t"><b>{{A_LABEL}}</b> {{A_SENTENCE}}</div></div>
+    <div class="sub"><div class="v"><small>{{B_FROM}} &rarr;</small> {{B_TO}}</div><div class="t"><b>{{B_LABEL}}</b> {{B_SENTENCE}}</div></div>
+    <figure class="taped" style="margin:26px -16px 6px;padding:18px 6px 8px">
+      <span class="tape l" aria-hidden="true"></span><span class="tape r" aria-hidden="true"></span>
+      <img src="chart.png" alt="{{CHART_ALT}}">
+    </figure>
+    <div class="caption">{{CHART_CAPTION}}</div>
+  </section>
+
+  <!-- 4. Ticked cards (repeat the li) -->
+  <p style="margin-top:26px"><b>{{CARDS_INTRO}}</b></p>
+  <ul class="grid">
+    <li class="sk check"><svg class="tick" aria-hidden="true"><use href="#tick"/></svg>
+      <div class="m">{{CARD_LABEL}}</div><div class="v"><small>{{CARD_FROM}} &rarr;</small> {{CARD_TO}}</div><div class="d">{{CARD_DELTA}}</div></li>
+  </ul>
+
+  <!-- 5. What's next (repeat the li) -->
+  <h2>{{SECTION_2}}<svg class="uline" aria-hidden="true"><use href="#uline"/></svg></h2>
+  <ul class="arrows">
+    <li><svg aria-hidden="true"><use href="#arrow"/></svg><div><b>{{NEXT_ITEM}}</b></div></li>
+  </ul>
+
+  <!-- 6. Thank-you village (repeat the house) -->
+  <h2>{{SECTION_3}}<svg class="uline" aria-hidden="true"><use href="#uline"/></svg></h2>
+  <div class="village" aria-hidden="true">
+    <div class="house"><svg><use href="#house"/></svg><span>{{TEAM}}</span></div>
+  </div>
+  <p>{{THANKS}}</p>
+  <div class="signoff">{{SIGNOFF}}</div>
+  <p class="sig">{{SIGNATURE}}</p>
+</main>
+</body>
+</html>
