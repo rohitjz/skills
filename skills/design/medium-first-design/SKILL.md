@@ -111,4 +111,14 @@ chrome --headless=new --hide-scrollbars --window-size=860,3000 --screenshot=desk
 ## Related
 - `sketchbook-ui`: the pencil-sketchbook medium, fully built with CSS kit, chart script and email export.
 - `references/medium-library.md`: eight mediums with inventories, mappings and pitfalls.
-- `examples/blueprint-roadmap/`: the blueprint medium applied to a product roadmap.
+- `examples/`: one built sample per medium, all render-tested at three screen sizes:
+  `blueprint-roadmap`, `museum-qbr`, `lab-notebook-incident`, `riso-launch`, `receipt-pricing`,
+  `field-journal-feedback`, `departure-board-status` (the sketchbook sample lives in `sketchbook-ui`).
+- Gallery: https://rohitjz.github.io/skills/
+- Lessons the samples taught (apply them):
+  - Check class names against the medium's vocabulary: `.board` the container vs `.board` the
+    status broke the departure board; `.big` the metric vs `.big` the timeline item broke the sketchbook.
+  - A stamp or mark must never cover a number. Give it its own space.
+  - Wide content (timelines, tables) scrolls inside its own container on phones, with `tabindex="0"`.
+  - Grid children holding code or tables need `min-width:0`, or the page overflows.
+  - Blinking forever is not a medium detail worth keeping. Animate only on real change.

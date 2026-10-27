@@ -4,6 +4,8 @@ My agent skills for Claude Code and GitHub Copilot, in one place: **18 skills in
 Each skill is a folder with a `SKILL.md` that the agent reads, plus any references, templates,
 scripts or evals it needs.
 
+**[See the design samples →](https://rohitjz.github.io/skills/)** Eight mediums, one method, all render-tested.
+
 ```
 skills/
 ├── design/                  how things look
@@ -69,6 +71,20 @@ git clone https://github.com/rohitjz/skills && cd skills
 
 To install one skill by hand, copy its folder, for example
 `cp -R skills/design/sketchbook-ui ~/.claude/skills/`.
+
+## Tests
+
+```bash
+pip install matplotlib pillow openpyxl playwright && python -m playwright install chromium
+python scripts/validate.py       # every skill's layout and frontmatter
+python tests/test_tools.py       # installer, chart script (all modes), email export, inliner
+python tests/run_samples.py      # every sample at 3 screen sizes + reduced motion
+```
+
+The sample run checks for horizontal overflow, broken images, missing alt text, unlabelled SVGs,
+text under 10px, keyboard access to scrolling areas, infinite animation, receipts that don't add
+up, and the departure board's interaction. CI runs all three on every push and keeps the
+screenshots as an artifact.
 
 ## Adding a skill
 

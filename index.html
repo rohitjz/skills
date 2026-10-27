@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One method, eight mediums: design samples by rohitjz</title>
+<meta name="description" content="Eight design samples, one first-principles method: borrow a real physical medium and rebuild it in code. Sketchbook, blueprint, museum, lab notebook, risograph zine, receipt, field journal, departure board.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{--table:#1B1A18;--film:#0E0E0D;--edge:#E8A33A;--paper:#F2EFE8;--ink:#F2EFE8;--muted:#A49F94;--grease:#E5413A;
+    --mono:"DM Mono",ui-monospace,Menlo,monospace;--serif:"Instrument Serif",Georgia,serif;--hand:Caveat,"Bradley Hand",cursive}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--table);color:var(--ink);font-family:var(--mono);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  a:focus-visible{outline:2px solid var(--edge);outline-offset:4px}
+  main{max-width:1180px;margin:0 auto;padding:56px 28px 80px}
+
+  header{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
+  .roll{font-size:12px;letter-spacing:.14em;color:var(--edge)}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,8vw,104px);line-height:.95;margin:14px 0 0;letter-spacing:-.01em}
+  h1 em{font-style:italic;color:var(--muted)}
+  .intro{color:#D7D2C7;max-width:46ch;margin:0}
+  .intro b{color:var(--ink);font-weight:500}
+
+  /* film strips */
+  .sheet{margin:56px 0 0;display:grid;gap:26px}
+  .strip{background:var(--film);padding:30px 18px;position:relative;
+    box-shadow:0 18px 40px -24px #000}
+  .strip::before,.strip::after{content:"";position:absolute;left:10px;right:10px;height:12px;
+    background:repeating-linear-gradient(90deg,transparent 0 10px,#2C2B28 10px 22px,transparent 22px 34px);border-radius:2px}
+  .strip::before{top:9px} .strip::after{bottom:9px}
+  .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .frame{position:relative;display:block;text-decoration:none;background:#000}
+  .frame img{display:block;width:100%;aspect-ratio:1280/900;object-fit:cover;object-position:top;filter:saturate(.95);transition:filter .2s}
+  .frame:hover img,.frame:focus-visible img{filter:saturate(1.1) brightness(1.04)}
+  .edge{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;color:var(--edge);padding:6px 2px 0}
+  .cap{padding:8px 2px 2px}
+  .cap .medium{font-family:var(--serif);font-size:26px;line-height:1.1;color:var(--ink)}
+  .cap .job{font-size:13px;color:var(--muted)}
+  .shot{position:relative;display:block}
+  .pick{position:absolute;left:-14px;top:-14px;width:calc(100% + 28px);height:calc(100% + 28px);pointer-events:none;overflow:visible}
+  .pick-note{position:absolute;right:-4px;top:-40px;font-family:var(--hand);font-size:26px;color:var(--grease);transform:rotate(3deg);white-space:nowrap}
+
+  /* method */
+  .method{margin:90px 0 0;display:grid;grid-template-columns:260px 1fr;gap:40px}
+  .method h2,.tested h2{font-family:var(--serif);font-weight:400;font-size:40px;line-height:1;margin:0}
+  .steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;grid-template-columns:repeat(2,1fr);gap:18px 36px}
+  .steps li{counter-increment:s;border-top:1px solid #3A3833;padding-top:10px;color:#D7D2C7}
+  .steps li::before{content:counter(s,decimal-leading-zero);display:block;font-size:12px;color:var(--edge);letter-spacing:.1em}
+  .steps b{color:var(--ink);font-weight:500}
+
+  .tested{margin:80px 0 0;display:grid;grid-template-columns:260px 1fr;gap:40px}
+  .facts{display:flex;gap:36px;flex-wrap:wrap}
+  .facts div{font-size:13px;color:var(--muted)}
+  .facts b{display:block;font-family:var(--serif);font-weight:400;font-size:46px;line-height:1;color:var(--ink)}
+  pre{background:#0E0E0D;border:1px solid #2E2C28;padding:16px 18px;overflow-x:auto;font-size:13px;line-height:1.6;margin:22px 0 0;color:#E9E4D8}
+  header>*,.method>*,.tested>*{min-width:0}
+  .links{margin-top:70px;padding-top:18px;border-top:1px solid #3A3833;display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  .links a{color:var(--ink);text-decoration:none;border-bottom:1px solid #5A564D}
+  .links a:hover{border-color:var(--edge)}
+
+  @media (max-width:980px){.frames{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:760px){
+    main{padding:36px 16px 60px}
+    header,.method,.tested{grid-template-columns:1fr;gap:18px}
+    .frames{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .pick-note{right:0;top:-30px}
+  }
+  @media (prefers-reduced-motion:reduce){.frame img{transition:none}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <div class="roll">ROLL 01 · DESIGN SAMPLES · CONTACT SHEET</div>
+      <h1>One method, <em>eight mediums.</em></h1>
+    </div>
+    <p class="intro">Generic design comes from vague direction. Each page here borrows a <b>real physical medium</b> whose job matches the content's job, then rebuilds its objects in code. Same method, eight very different results.</p>
+  </header>
+
+  <section class="sheet" aria-label="Samples">
+    <div class="strip"><div class="frames">
+      <a class="frame" href="skills/design/sketchbook-ui/examples/lets-encrypt-10-years/index.html">
+        <span class="shot"><img src="skills/design/sketchbook-ui/examples/lets-encrypt-10-years/preview.jpg" alt="Sketchbook sample: Let's Encrypt's ten-year post redrawn with a highlighted 80% and a pencil chart.">
+          <svg class="pick" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true"><path d="M210 10 C 90 6, 14 30, 10 140 C 6 250, 120 292, 230 290 C 340 288, 394 240, 392 140 C 390 50, 330 12, 180 16" fill="none" stroke="#E5413A" stroke-width="3.2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
+          <span class="pick-note" aria-hidden="true">start here</span></span>
+        <div class="edge"><span>01</span><span>SKETCHBOOK</span></div>
+        <div class="cap"><div class="medium">Designer's sketchbook</div><div class="job">Milestone · a real public post, redrawn</div></div>
+      </a>
+      <a class="frame" href="skills/design/medium-first-design/examples/blueprint-roadmap/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/blueprint-roadmap/preview.jpg" alt="Blueprint sample: a product roadmap with dimension lines, a title block and a red revision cloud."></span>
+        <div class="edge"><span>02</span><span>BLUEPRINT</span></div>
+        <div class="cap"><div class="medium">Architect's blueprint</div><div class="job">Roadmap · phases and dependencies</div></div>
+      </a>
+      <a class="frame" href="skills/design/medium-first-design/examples/museum-qbr/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/museum-qbr/preview.jpg" alt="Museum sample: a quarterly review laid out as gallery rooms with wall placards and accession numbers."></span>
+        <div class="edge"><span>03</span><span>MUSEUM</span></div>
+        <div class="cap"><div class="medium">Museum exhibit</div><div class="job">Quarterly business review</div></div>
+      </a>
+    </div></div>
+
+    <div class="strip"><div class="frames">
+      <a class="frame" href="skills/design/medium-first-design/examples/lab-notebook-incident/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/lab-notebook-incident/preview.jpg" alt="Lab notebook sample: an incident report with timestamps in the margin, crossed-out hypotheses and a taped log excerpt."></span>
+        <div class="edge"><span>04</span><span>LAB NOTEBOOK</span></div>
+        <div class="cap"><div class="medium">Engineer's lab notebook</div><div class="job">Incident and root-cause report</div></div>
+      </a>
+      <a class="frame" href="skills/design/medium-first-design/examples/riso-launch/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/riso-launch/preview.jpg" alt="Risograph zine sample: a launch announcement in pink and blue spot inks with misregistered type and halftone dots."></span>
+        <div class="edge"><span>05</span><span>RISO ZINE</span></div>
+        <div class="cap"><div class="medium">Risograph zine</div><div class="job">Launch announcement</div></div>
+      </a>
+      <a class="frame" href="skills/design/medium-first-design/examples/receipt-pricing/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/receipt-pricing/preview.jpg" alt="Receipt sample: a pricing page with price tags and an itemised receipt that adds up."></span>
+        <div class="edge"><span>06</span><span>RECEIPT</span></div>
+        <div class="cap"><div class="medium">Receipt and price tags</div><div class="job">Pricing page</div></div>
+      </a>
+    </div></div>
+
+    <div class="strip"><div class="frames">
+      <a class="frame" href="skills/design/medium-first-design/examples/field-journal-feedback/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/field-journal-feedback/preview.jpg" alt="Field journal sample: a customer feedback digest with tally marks and pinned quote cards."></span>
+        <div class="edge"><span>07</span><span>FIELD JOURNAL</span></div>
+        <div class="cap"><div class="medium">Field researcher's journal</div><div class="job">Customer feedback digest</div></div>
+      </a>
+      <a class="frame" href="skills/design/medium-first-design/examples/departure-board-status/index.html">
+        <span class="shot"><img src="skills/design/medium-first-design/examples/departure-board-status/preview.jpg" alt="Departure board sample: release status shown as split-flap rows and coloured flight strips."></span>
+        <div class="edge"><span>08</span><span>DEPARTURE BOARD</span></div>
+        <div class="cap"><div class="medium">Departure board</div><div class="job">Live release status</div></div>
+      </a>
+      <a class="frame" href="skills/design/sketchbook-ui/examples/kit/index.html">
+        <span class="shot"><img src="skills/design/sketchbook-ui/examples/kit/preview.jpg" alt="Sketchbook UI kit: every hand-drawn component on one graph-paper page."></span>
+        <div class="edge"><span>09</span><span>KIT</span></div>
+        <div class="cap"><div class="medium">Sketchbook UI kit</div><div class="job">Every component, one page</div></div>
+      </a>
+    </div></div>
+  </section>
+
+  <section class="method" aria-labelledby="m">
+    <h2 id="m">The method</h2>
+    <ol class="steps">
+      <li><b>Find the content's job.</b> One thing the reader must remember, and who is reading.</li>
+      <li><b>Pick a medium that does that job.</b> A roadmap is a plan, so use a blueprint.</li>
+      <li><b>List what's physically in it.</b> Surface, marks, objects and the habits a native reader expects.</li>
+      <li><b>Give every mark a job.</b> A revision cloud means "changed". Cut anything that means nothing.</li>
+      <li><b>Spend boldness once.</b> One circle, one stamp, one highlighter. Keep the rest quiet.</li>
+      <li><b>Render, look, fix.</b> Check screenshots at every screen size, not just the code.</li>
+    </ol>
+  </section>
+
+  <section class="tested" aria-labelledby="t">
+    <h2 id="t">Tested</h2>
+    <div>
+      <div class="facts">
+        <div><b>36</b>page renders per run</div>
+        <div><b>3</b>screen sizes, plus reduced motion</div>
+        <div><b>16</b>tooling checks</div>
+      </div>
+      <p style="color:#D7D2C7;max-width:62ch;margin:18px 0 0">On every push, each sample is checked for horizontal overflow, broken images, missing alt text, unlabelled graphics, tiny text, keyboard access to scrolling areas, endless animation and arithmetic that doesn't add up.</p>
+      <pre tabindex="0" aria-label="Install commands"><code>git clone https://github.com/rohitjz/skills &amp;&amp; cd skills
+./install.sh --category design        # sketchbook-ui, medium-first-design, …
+python tests/run_samples.py           # render-test every sample</code></pre>
+    </div>
+  </section>
+
+  <nav class="links" aria-label="Links">
+    <a href="https://github.com/rohitjz/skills">rohitjz/skills on GitHub</a>
+    <a href="https://github.com/rohitjz/skills/tree/main/skills/design/medium-first-design">medium-first-design skill</a>
+    <a href="https://github.com/rohitjz/skills/tree/main/skills/design/sketchbook-ui">sketchbook-ui skill</a>
+    <span>Northwind Notes is a fictional product. The Let's Encrypt page is an unofficial redesign of a public post.</span>
+  </nav>
+</main>
+</body>
+</html>

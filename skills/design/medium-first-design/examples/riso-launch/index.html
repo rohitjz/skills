@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offline search is here: a Northwind zine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F4EEDF;--pink:#FF48B0;--blue:#3255A4;--ink:#1E2340;--display:Anton,Impact,sans-serif;--text:"Space Grotesk",system-ui,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:#D9D2C1;color:var(--ink);font-family:var(--text);font-size:18px;line-height:1.55}
+  .zine{max-width:900px;margin:28px auto;background:var(--paper);position:relative;overflow:hidden;
+    box-shadow:0 18px 40px -22px rgba(40,30,10,.5)}
+  /* paper grain over everything, never blocks clicks */
+  .zine::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.10;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .crease{position:absolute;top:0;bottom:0;left:50%;width:1px;background:rgba(0,0,0,.06)}
+  .staple{position:absolute;left:calc(50% - 2px);width:4px;height:26px;background:#9A9A9A;border-radius:2px}
+  .staple.a{top:120px}.staple.b{top:470px}
+
+  .cover{position:relative;padding:54px 48px 40px;min-height:560px}
+  .issue{font-weight:700;font-size:14px;letter-spacing:.04em;color:var(--blue);display:flex;justify-content:space-between}
+  /* misregistration: same text in two spot inks, offset, multiplied */
+  .riso{position:relative;font-family:var(--display);font-weight:400;line-height:.86;text-transform:none;margin:0;color:var(--blue);mix-blend-mode:multiply}
+  .riso::before{content:attr(data-text);position:absolute;left:4px;top:3px;color:var(--pink);mix-blend-mode:multiply;z-index:-0}
+  h1.riso{font-size:clamp(84px,17vw,176px);margin-top:26px;letter-spacing:.005em}
+  .dots{position:absolute;right:-60px;top:150px;width:360px;height:360px;border-radius:50%;
+    background:radial-gradient(circle,var(--pink) 38%,transparent 40%) 0 0/14px 14px;opacity:.85;mix-blend-mode:multiply}
+  .circle{position:absolute;right:120px;top:300px;width:200px;height:200px;border-radius:50%;background:var(--blue);mix-blend-mode:multiply;opacity:.9}
+  .kicker{position:relative;font-weight:700;font-size:22px;max-width:420px;margin:30px 0 0;background:var(--paper);display:inline-block;padding:6px 10px;transform:rotate(-1.5deg)}
+
+  .spread{position:relative;z-index:1;background:var(--paper);display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:3px solid var(--ink)}
+  .col{padding:40px 48px}
+  .col + .col{border-left:3px dashed rgba(30,35,64,.25)}
+  h2.riso{font-size:58px;line-height:.98;margin:0 0 18px}
+  .how{counter-reset:s;list-style:none;padding:0;margin:0}
+  .how li{counter-increment:s;position:relative;padding:0 0 18px 56px}
+  .how li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:var(--display);font-size:40px;color:var(--pink);line-height:1}
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+  .fact{border:3px solid var(--ink);padding:12px 14px;background:rgba(255,255,255,.35)}
+  .fact b{display:block;font-family:var(--display);font-weight:400;font-size:44px;line-height:1;color:var(--blue)}
+  .fact span{font-size:14px;font-weight:500}
+
+  .tear{position:relative;z-index:1;background:var(--paper);padding:34px 48px 46px;border-top:3px solid var(--ink);display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+  .cta{font-family:var(--display);font-size:34px;color:var(--paper);background:var(--blue);padding:12px 22px;text-decoration:none;
+    box-shadow:5px 5px 0 var(--pink);transition:transform .12s, box-shadow .12s}
+  .cta:hover,.cta:focus-visible{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--pink)}
+  .cta:focus-visible{outline:3px solid var(--ink);outline-offset:4px}
+  .small{font-size:14px;max-width:44ch}
+  @media (max-width:720px){
+    .zine{margin:0}
+    .cover{padding:40px 22px 30px;min-height:auto}
+    .dots{width:220px;height:220px;right:-70px;top:120px}
+    .circle{width:120px;height:120px;right:40px;top:230px}
+    .spread{grid-template-columns:1fr}
+    .col{padding:30px 22px}
+    .col + .col{border-left:0;border-top:3px dashed rgba(30,35,64,.25)}
+    .crease,.staple{display:none}
+    .tear{padding:28px 22px 36px}
+  }
+  @media (prefers-reduced-motion:reduce){.cta{transition:none}}
+</style>
+</head>
+<body>
+<main class="zine">
+  <div class="crease" aria-hidden="true"></div><span class="staple a" aria-hidden="true"></span><span class="staple b" aria-hidden="true"></span>
+
+  <section class="cover">
+    <div class="issue"><span>NORTHWIND NOTES ZINE · ISSUE 07</span><span>OCT 2026</span></div>
+    <div class="dots" aria-hidden="true"></div><div class="circle" aria-hidden="true"></div>
+    <h1 class="riso" data-text="Offline search.">Offline search.</h1>
+    <p class="kicker">Find any note from the last 90 days with no signal at all. Planes, trains, basements.</p>
+  </section>
+
+  <section class="spread">
+    <div class="col">
+      <h2 class="riso" data-text="How it works">How it works</h2>
+      <ol class="how">
+        <li>Your phone keeps a small search index of your recent notes.</li>
+        <li>It updates quietly whenever you're online and charging.</li>
+        <li>Search works the same, with or without a connection.</li>
+      </ol>
+    </div>
+    <div class="col">
+      <h2 class="riso" data-text="By the numbers">By the numbers</h2>
+      <div class="facts">
+        <div class="fact"><b>90</b><span>days of notes, searchable offline</span></div>
+        <div class="fact"><b>38MB</b><span>typical index size on a phone</span></div>
+        <div class="fact"><b>0.1s</b><span>to first result, offline</span></div>
+        <div class="fact"><b>0</b><span>settings to turn on</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tear">
+    <a class="cta" href="#">Update the app</a>
+    <p class="small">Available today on iOS and Android, version 6.4 and later. Northwind Notes is a fictional product; this zine is a design sample.</p>
+  </section>
+</main>
+</body>
+</html>

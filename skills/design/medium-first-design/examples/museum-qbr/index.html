@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northwind Notes, Q3 2026: an exhibition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--wall:#F3F1EC;--ink:#2B2A27;--muted:#6B665D;--rule:#D8D3C8;--accent:#B4552D;
+    --serif:Newsreader,Georgia,serif;--sans:Inter,system-ui,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--wall);color:var(--ink);font-family:var(--serif);font-size:19px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .gallery{max-width:1040px;margin:0 auto;padding:64px 40px 80px}
+  .museum{font-family:var(--sans);font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:14px}
+  .title{margin:72px 0 0;max-width:760px}
+  .title h1{font-weight:400;font-size:clamp(44px,7vw,78px);line-height:1.02;letter-spacing:-.02em;margin:0}
+  .title p{font-style:italic;color:var(--muted);font-size:21px;margin:18px 0 0}
+  .dates{font-family:var(--sans);font-size:13px;color:var(--muted);margin-top:26px}
+
+  .room{margin:96px 0 0;display:grid;grid-template-columns:150px 1fr;gap:40px}
+  .room-no{font-family:var(--sans);font-size:13px;color:var(--muted);border-top:2px solid var(--ink);padding-top:10px}
+  .room-no b{display:block;font-family:var(--serif);font-weight:400;font-size:46px;color:var(--ink);line-height:1;margin-bottom:6px}
+  .room h2{font-weight:400;font-size:34px;line-height:1.15;margin:0 0 18px}
+
+  /* the artefact: one framed object */
+  .frame{background:#FBFAF7;padding:22px;border:1px solid var(--rule);box-shadow:0 1px 0 #fff inset,0 24px 50px -30px rgba(40,35,25,.45)}
+  .frame img{display:block;width:100%;height:auto}
+  .exhibit{display:grid;grid-template-columns:1fr 260px;gap:34px;align-items:end}
+
+  /* wall placards */
+  .placard{font-family:var(--sans);font-size:13px;line-height:1.5;color:var(--ink);background:#FFFFFF;padding:16px 18px;border:1px solid var(--rule)}
+  .placard .t{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.3;margin-bottom:6px}
+  .placard .m{color:var(--muted)}
+  .placard .acc{margin-top:10px;font-size:11px;letter-spacing:.06em;color:var(--muted)}
+  .placards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+  .figure{font-family:var(--serif);font-size:44px;line-height:1;margin:6px 0 8px;color:var(--ink)}
+  .figure small{font-size:18px;color:var(--muted)}
+
+  .curator{max-width:640px}
+  .curator p{margin:0 0 16px}
+  .curator .sig{font-family:var(--sans);font-size:13px;color:var(--muted)}
+  .lead{font-size:23px;line-height:1.5}
+  .lead em{font-style:normal;border-bottom:2px solid var(--accent)}
+
+  .next{list-style:none;padding:0;margin:0;font-size:19px}
+  .next li{padding:14px 0;border-top:1px solid var(--rule);display:grid;grid-template-columns:140px 1fr;gap:20px}
+  .next li span{font-family:var(--sans);font-size:13px;color:var(--muted);padding-top:4px}
+
+  .plan{margin-top:96px;border-top:1px solid var(--rule);padding-top:22px;font-family:var(--sans);font-size:13px;color:var(--muted);display:flex;gap:28px;flex-wrap:wrap}
+  .plan a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--rule)}
+  .plan a:hover,.plan a:focus-visible{border-color:var(--ink)}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  @media (max-width:760px){
+    body{font-size:18px}
+    .gallery{padding:40px 22px 60px}
+    .room{grid-template-columns:1fr;gap:16px;margin-top:64px}
+    .exhibit{grid-template-columns:1fr}
+    .placards{grid-template-columns:1fr}
+    .next li{grid-template-columns:1fr;gap:2px}
+    .frame{padding:12px}
+  }
+</style>
+</head>
+<body>
+<main class="gallery">
+  <div class="museum"><span>Northwind Notes · Quarterly review</span><span>Gallery 3 · Q3 2026</span></div>
+
+  <header class="title">
+    <h1>Finding, not searching</h1>
+    <p>Nine months of work on search, in three rooms.</p>
+    <div class="dates">January&ndash;September 2026 · Illustrative data</div>
+  </header>
+
+  <section class="room" aria-labelledby="r1">
+    <div class="room-no"><b>I</b>Growth</div>
+    <div>
+      <h2 id="r1">Weekly searchers nearly doubled</h2>
+      <div class="exhibit">
+        <div class="frame"><img src="artifact.png" alt="Line chart of weekly searchers, rising from 42 thousand in January to 82 thousand in September 2026, with the third quarter shaded where learned ranking shipped to all users."></div>
+        <div class="placard">
+          <div class="t">Weekly searchers, 2026</div>
+          <div class="m">Line chart, rolling seven-day count of people who ran at least one search</div>
+          <div class="figure">82K <small>from 42K</small></div>
+          <div class="m">The steepest gain followed learned ranking in July.</div>
+          <div class="acc">ACC. Q3.2026.01</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" aria-labelledby="r2">
+    <div class="room-no"><b>II</b>Quality</div>
+    <div>
+      <h2 id="r2">Better answers, faster</h2>
+      <div class="placards">
+        <div class="placard"><div class="t">First result opened</div><div class="m">Share of searches where the top result was the one people opened</div>
+          <div class="figure">58% <small>from 47%</small></div><div class="acc">ACC. Q3.2026.02</div></div>
+        <div class="placard"><div class="t">Searches with no result</div><div class="m">Share of searches that returned nothing</div>
+          <div class="figure">6% <small>from 14%</small></div><div class="acc">ACC. Q3.2026.03</div></div>
+        <div class="placard"><div class="t">Time to first result</div><div class="m">95th percentile, in seconds</div>
+          <div class="figure">0.18s <small>from 1.4s</small></div><div class="acc">ACC. Q3.2026.04</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="room" aria-labelledby="r3">
+    <div class="room-no"><b>III</b>Curator's note</div>
+    <div class="curator">
+      <h2 id="r3">Why it worked</h2>
+      <p class="lead">Growth followed quality. People searched more once <em>the first result was usually the right one</em>.</p>
+      <p>The new index made search fast enough to trust. Learned ranking then put the note people meant at the top, so fewer searches ended empty and more ended on the first click. Usage rose most in the weeks after each of these shipped.</p>
+      <p class="sig">Notes by the Search team</p>
+    </div>
+  </section>
+
+  <section class="room" aria-labelledby="r4">
+    <div class="room-no"><b>IV</b>Coming next</div>
+    <div>
+      <h2 id="r4">Next quarter's acquisitions</h2>
+      <ul class="next">
+        <li><span>Q4 2026</span>Search inside attachments: PDFs and images.</li>
+        <li><span>Q4 2026</span>Offline search on mobile.</li>
+        <li><span>Q1 2027</span>Shared team notebooks in results.</li>
+      </ul>
+    </div>
+  </section>
+
+  <nav class="plan" aria-label="Floor plan">
+    <span>Floor plan:</span><a href="#r1">I Growth</a><a href="#r2">II Quality</a><a href="#r3">III Curator's note</a><a href="#r4">IV Coming next</a>
+    <span>Northwind Notes is a fictional product. All figures are illustrative.</span>
+  </nav>
+</main>
+</body>
+</html>
