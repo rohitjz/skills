@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Northwind Notes: 2027 roadmap (blueprint)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bp:#123A6B;--bp-deep:#0D2C52;--line:rgba(255,255,255,.86);--faint:rgba(255,255,255,.10);
+    --soft:rgba(255,255,255,.62);--red:#FF6B5B;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+    --hand:"Architects Daughter","Bradley Hand",cursive}
+  *{box-sizing:border-box}
+  body{margin:0;background:#C9D2DC;font-family:var(--mono);color:#fff;-webkit-font-smoothing:antialiased}
+  .sheet{max-width:980px;margin:28px auto;padding:44px 48px 40px;position:relative;background-color:var(--bp);
+    background-image:
+      linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px),
+      linear-gradient(var(--faint) 1px,transparent 1px),linear-gradient(90deg,var(--faint) 1px,transparent 1px);
+    background-size:120px 120px,120px 120px,24px 24px,24px 24px;
+    box-shadow:0 18px 40px -20px rgba(10,30,60,.6)}
+  .sheet::before{content:"";position:absolute;inset:14px;border:1.5px solid var(--line);pointer-events:none}
+  .sheet::after{content:"";position:absolute;inset:20px;border:1px solid rgba(255,255,255,.35);pointer-events:none}
+
+  .hand{font-family:var(--hand)}
+  .eyebrow{font-size:13px;letter-spacing:.06em;color:var(--soft)}
+  h1{font-family:var(--hand);font-weight:400;font-size:clamp(40px,6vw,62px);line-height:1.05;margin:6px 0 10px}
+  .lede{font-size:15px;line-height:1.6;max-width:62ch;color:rgba(255,255,255,.9);margin:0 0 6px}
+  .stamp{display:inline-block;border:1.5px solid var(--soft);padding:2px 8px;font-size:11px;letter-spacing:.08em;color:var(--soft);margin-right:8px}
+
+  /* timeline plan */
+  .plan-wrap:focus-visible{outline:1px dashed var(--line);outline-offset:6px}
+  .plan{position:relative;margin:34px 0 8px;padding:20px 0 0}
+  .months{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);font-size:12px;color:var(--soft)}
+  .months div{padding:0 0 6px 8px;border-left:1px dashed rgba(255,255,255,.35)}
+  .lane{display:grid;grid-template-columns:repeat(4,1fr);align-items:center;min-height:74px;border-bottom:1px dashed rgba(255,255,255,.18);position:relative}
+  .lane-name{position:absolute;left:0;top:6px;font-size:11px;letter-spacing:.06em;color:var(--soft)}
+  .bar{position:relative;height:30px;margin-top:16px;border:1.5px solid var(--line);display:flex;align-items:center;padding:0 10px;
+    font-size:13px;font-weight:500;background:rgba(255,255,255,.04)}
+  .bar.done{background:repeating-linear-gradient(135deg,rgba(255,255,255,.18) 0 2px,transparent 2px 8px)}
+  .bar .callout{position:absolute;top:-11px;right:-11px;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--line);
+    background:var(--bp);font-size:11px;display:grid;place-items:center}
+  .dim{position:absolute;left:0;right:0;bottom:-15px;height:10px}
+  .dim svg{width:100%;height:10px;display:block;overflow:visible}
+  .dim span{position:absolute;left:50%;top:-1px;transform:translateX(-50%);background:var(--bp);padding:0 5px;font-size:10px;color:var(--soft)}
+  .lane.gap-below{margin-bottom:26px}
+  .depnote{font-family:var(--hand);font-size:15px;color:var(--soft);margin:14px 0 0;display:flex;align-items:center;gap:8px}
+  .depnote svg{width:42px;height:14px;overflow:visible}
+
+  /* the one bold move: red revision cloud */
+  .revised{position:relative}
+  .cloud{position:absolute;inset:-14px -16px;width:calc(100% + 32px);height:calc(100% + 28px);overflow:visible;pointer-events:none}
+  .rev-note{position:absolute;left:0;top:calc(100% + 22px);font-family:var(--hand);font-size:17px;color:var(--red);transform:rotate(-2deg);white-space:nowrap}
+
+  /* details */
+  h2{font-family:var(--hand);font-weight:400;font-size:30px;margin:46px 0 14px;display:flex;align-items:center;gap:12px}
+  h2 .tag{width:30px;height:30px;border:1.5px solid var(--line);border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:13px}
+  .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .spec{background:#F7F9FC;color:#18304F;padding:16px 18px 14px;border-top:4px solid #8FB3E0;font-size:13.5px;line-height:1.55}
+  .spec h3{font-family:var(--mono);font-size:13px;font-weight:600;margin:0 0 6px;display:flex;justify-content:space-between;gap:8px}
+  .spec h3 small{font-weight:400;color:#5A6E88}
+  .spec ul{margin:6px 0 0;padding-left:18px}
+  .spec .metric{font-family:var(--hand);font-size:20px;color:var(--bp);margin-top:6px}
+
+  .notes{margin:36px 0 0;font-family:var(--hand);font-size:17px;line-height:1.5;max-width:58ch;color:rgba(255,255,255,.92)}
+  .notes li{margin:4px 0}
+
+  /* title block */
+  .titleblock{margin:40px 0 0 auto;width:min(420px,100%);border:1.5px solid var(--line);font-size:11px}
+  .titleblock div{display:grid;grid-template-columns:110px 1fr;border-top:1px solid rgba(255,255,255,.4)}
+  .titleblock div:first-child{border-top:0}
+  .titleblock span{padding:6px 8px}
+  .titleblock span:first-child{color:var(--soft);border-right:1px solid rgba(255,255,255,.4)}
+  .titleblock b{font-family:var(--hand);font-weight:400;font-size:15px}
+
+  @media (max-width:700px){
+    .sheet{margin:0;padding:34px 24px}
+    .sheet::before{inset:8px}.sheet::after{inset:12px}
+    .plan-wrap{overflow-x:auto;margin:0 -24px;padding:0 24px 6px}
+    .plan{min-width:640px}
+    .plan-wrap::after{content:"scroll sideways for the full plan";display:block;font-family:var(--hand);font-size:14px;color:var(--soft);margin-top:8px}
+    .specs{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(255,255,255,.75)" stroke-width="1.4"/></marker>
+    <marker id="ahs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.4"/></marker>
+  </defs>
+</svg>
+
+<main class="sheet">
+  <div class="eyebrow">Northwind Notes · Product roadmap · Sheet 1 of 1</div>
+  <h1>2027 plan: search that finds the note you meant</h1>
+  <p class="lede">Four workstreams over four quarters. Faster search ships first, because every later feature depends on it. One change since the last revision is clouded in red.</p>
+  <span class="stamp">DRAFT</span><span class="stamp">NOT TO SCALE</span>
+
+  <div class="plan-wrap" tabindex="0" aria-label="Timeline by quarter, scrolls sideways on small screens">
+  <section class="plan">
+    <div class="months"><div>Q1 2027</div><div>Q2 2027</div><div>Q3 2027</div><div>Q4 2027</div></div>
+
+    <div class="lane"><span class="lane-name">PLATFORM</span>
+      <div class="bar done" style="grid-column:1 / 2">New search index<span class="callout">A</span>
+        <div class="dim"><svg viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="1" y1="5" x2="99" y2="5" stroke="rgba(255,255,255,.6)" stroke-width="1" vector-effect="non-scaling-stroke" marker-start="url(#ahs)" marker-end="url(#ahs)"/></svg><span>12 wks</span></div></div>
+    </div>
+
+    <div class="lane"><span class="lane-name">RELEVANCE</span>
+      <div class="bar" style="grid-column:2 / 4">Ranking that learns from clicks<span class="callout">B</span>
+        <div class="dim"><svg viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="1" y1="5" x2="99" y2="5" stroke="rgba(255,255,255,.6)" stroke-width="1" vector-effect="non-scaling-stroke" marker-start="url(#ahs)" marker-end="url(#ahs)"/></svg><span>20 wks</span></div></div>
+    </div>
+
+    <div class="lane gap-below"><span class="lane-name">EXPERIENCE</span>
+      <div class="bar revised" style="grid-column:3 / 5">Search across attachments<span class="callout">C</span>
+        <svg class="cloud" viewBox="0 0 200 60" preserveAspectRatio="none" aria-hidden="true"><path fill="none" stroke="#FF6B5B" stroke-width="1.6" vector-effect="non-scaling-stroke" d="M10 18 q6-12 18-6 q8-12 20-4 q10-10 22-2 q10-10 22-2 q10-10 22-2 q10-10 22-2 q10-10 22-2 q12-6 16 8 q10 6 2 16 q8 10-4 16 q-2 12-16 8 q-8 10-20 4 q-10 10-22 2 q-10 10-22 2 q-10 10-22 2 q-10 10-22 2 q-10 10-22 2 q-12 6-18-6 q-10-6-4-16 q-8-10 4-16 q0-12 14-8z"/></svg>
+        <span class="rev-note">moved from Q2: needs ranking (B) first</span>
+        <div class="dim"><svg viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="1" y1="5" x2="99" y2="5" stroke="rgba(255,255,255,.6)" stroke-width="1" vector-effect="non-scaling-stroke" marker-start="url(#ahs)" marker-end="url(#ahs)"/></svg><span>22 wks</span></div></div>
+    </div>
+
+    <div class="lane"><span class="lane-name">MOBILE</span>
+      <div class="bar" style="grid-column:2 / 3">Offline search<span class="callout">D</span>
+        <div class="dim"><svg viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="1" y1="5" x2="99" y2="5" stroke="rgba(255,255,255,.6)" stroke-width="1" vector-effect="non-scaling-stroke" marker-start="url(#ahs)" marker-end="url(#ahs)"/></svg><span>10 wks</span></div></div>
+    </div>
+  </section>
+  </div>
+  <p class="depnote"><svg viewBox="0 0 42 14" aria-hidden="true"><line x1="2" y1="7" x2="38" y2="7" stroke="rgba(255,255,255,.75)" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah)"/></svg>A feeds B, and B feeds C. D runs on its own track.</p>
+
+  <h2><span class="tag">2</span>Details A&ndash;D</h2>
+  <div class="specs">
+    <div class="spec"><h3>A · New search index <small>Q1 · shipped</small></h3>
+      Rebuilds the index so results arrive in under 200 ms at the 95th percentile.
+      <div class="metric">p95 latency 1.4 s → 0.18 s</div></div>
+    <div class="spec"><h3>B · Learned ranking <small>Q2–Q3</small></h3>
+      Orders results using which notes people actually open.
+      <ul><li>Depends on A</li><li>Gate: first-click success +5 pts in an A/B test</li></ul></div>
+    <div class="spec"><h3>C · Attachments <small>Q3–Q4 · revised</small></h3>
+      Finds text inside PDFs and images attached to notes.
+      <ul><li>Depends on B for ranking mixed results</li><li>Moved one quarter later</li></ul></div>
+    <div class="spec"><h3>D · Offline search <small>Q2</small></h3>
+      Searches recent notes on mobile without a connection.
+      <ul><li>Independent of B and C</li><li>Gate: index under 40 MB on device</li></ul></div>
+  </div>
+
+  <ul class="notes">
+    <li>Note 1: dimension lines show planned effort, not calendar promises.</li>
+    <li>Note 2: B's gate decides C's start date. If B misses, C moves again.</li>
+  </ul>
+
+  <div class="titleblock" role="table" aria-label="Title block">
+    <div><span>Project</span><span><b>Northwind Notes search</b></span></div>
+    <div><span>Drawn by</span><span>Product team</span></div>
+    <div><span>Revision</span><span>Rev C · attachments moved to Q3</span></div>
+    <div><span>Date</span><span>Illustrative example</span></div>
+  </div>
+</main>
+</body>
+</html>

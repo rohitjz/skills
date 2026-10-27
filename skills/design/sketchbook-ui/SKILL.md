@@ -96,3 +96,9 @@ For a formal exec audience, offer a clean typographic version with the same cont
 `examples/lets-encrypt-10-years/` redraws the public post "10 Years of Let's Encrypt Certificates"
 (Dec 9, 2025). The chart is drawn from Let's Encrypt's public daily stats. It is an unofficial
 example, credited in the footer and not affiliated with Let's Encrypt or ISRG.
+
+## Other mediums
+
+This skill is one medium, fully built. For other looks (blueprint, museum placard, lab notebook,
+risograph zine, receipt, field journal, departure board) and the general method behind them, use
+`medium-first-design`.

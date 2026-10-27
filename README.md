@@ -1,6 +1,6 @@
 # Skills
 
-My agent skills for Claude Code and GitHub Copilot, in one place: **17 skills in 4 categories.**
+My agent skills for Claude Code and GitHub Copilot, in one place: **18 skills in 4 categories.**
 Each skill is a folder with a `SKILL.md` that the agent reads, plus any references, templates,
 scripts or evals it needs.
 
@@ -18,6 +18,7 @@ skills/
 | Skill | What it does |
 |---|---|
 | [sketchbook-ui](skills/design/sketchbook-ui) | Hand-drawn pages, newsletters and charts: pencil boxes, highlighter, doodles, xkcd-style charts, email export. [Live example](https://rohitjz.github.io/sketchbook-ui/examples/lets-encrypt-10-years/) |
+| [medium-first-design](skills/design/medium-first-design) | The first-principles method behind sketchbook-ui: borrow a physical medium (blueprint, museum, lab notebook, zine, receipt…) and rebuild it in code. Library of 8 mediums. |
 | [elevate-ui](skills/design/elevate-ui) | Turns flat, AI-looking pages into designed ones: bespoke SVG icons, depth, liquid-glass chrome, motion. |
 | [glassify](skills/design/glassify) | Single-file sites with a validated liquid-glass treatment (SVG refraction and layered dome shadows). |
 
