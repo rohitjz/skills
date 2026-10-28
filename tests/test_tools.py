@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Exercise the repo tooling end to end: validator, installer, and the sketchbook-ui scripts
+"""Exercise the repo tooling end to end: validator, installer, and the analog-ui scripts
 (chart in every mode, CSV and XLSX input, email export, asset inlining)."""
 import csv, datetime as dt, math, pathlib, re, subprocess, sys, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-SK = ROOT / "skills/design/sketchbook-ui"
+SK = ROOT / "skills/design/analog-ui"
+SB = SK / "mediums/sketchbook"
 PY = sys.executable
 results = []
 
@@ -28,7 +29,7 @@ def main():
     n = len([l for l in r.stdout.splitlines() if l.strip()])
     check("install.sh --list lists every skill", r.returncode == 0 and n == len(list(ROOT.glob("skills/*/*/SKILL.md"))), f"{n} listed")
     r = run("bash", str(ROOT / "install.sh"), "--target", str(tmp / "inst"), "--category", "design")
-    check("install.sh installs a category flat", (tmp / "inst/sketchbook-ui/SKILL.md").exists() and (tmp / "inst/medium-first-design/SKILL.md").exists(), r.stderr)
+    check("install.sh installs a category flat", (tmp / "inst/analog-ui/SKILL.md").exists() and (tmp / "inst/analog-ui/mediums/sketchbook/assets/sketchbook.css").exists() and not (tmp / "inst/sketchbook-ui").exists(), r.stderr)
     r = run("bash", str(ROOT / "install.sh"), "--target", str(tmp / "lnk"), "--link", "council")
     check("install.sh --link makes a symlink", (tmp / "lnk/council").is_symlink(), r.stderr)
     r = run("bash", str(ROOT / "install.sh"), "--target", str(tmp / "x"), "does-not-exist")
@@ -40,7 +41,7 @@ def main():
         for i in range(200):
             day = dt.date(2025, 1, 1) + dt.timedelta(days=i * 5)
             w.writerow([day.isoformat(), 1000 + i * 40 + 80 * math.sin(i / 4), 0.03 + i / 9000, 3 + i / 90, 5000 + i * 300])
-    chart = SK / "scripts/sketch_chart.py"
+    chart = SB / "scripts/sketch_chart.py"
     cases = {
         "primary only": [],
         "ratio secondary": ["--secondary", "share", "--secondary-label", "share"],
@@ -71,7 +72,7 @@ def main():
     im = Image.open(tmp / "c-primary-only.png")
     check("sketch_chart: output is transparent and trimmed", im.mode == "RGBA" and im.getchannel("A").getextrema()[0] == 0)
 
-    sample = SK / "examples/lets-encrypt-10-years/index.html"
+    sample = SB / "examples/lets-encrypt-10-years/index.html"
     single = tmp / "single.html"
     r = run(PY, str(SK / "scripts/inline_assets.py"), str(sample), "-o", str(single))
     html = single.read_text() if single.exists() else ""

@@ -6,7 +6,7 @@
 #   ./install.sh                      # all skills -> ~/.claude/skills
 #   ./install.sh --target copilot     # all skills -> ~/.copilot/skills
 #   ./install.sh --category design    # one category
-#   ./install.sh sketchbook-ui council # specific skills
+#   ./install.sh analog-ui council     # specific skills
 #   ./install.sh --link               # symlink instead of copy (stays in sync with git pull)
 #   ./install.sh --list               # show what's available
 set -euo pipefail

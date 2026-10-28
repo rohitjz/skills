@@ -1,10 +1,10 @@
 # Skills
 
-My agent skills for Claude Code and GitHub Copilot, in one place: **18 skills in 4 categories.**
+My agent skills for Claude Code and GitHub Copilot, in one place: **17 skills in 4 categories.**
 Each skill is a folder with a `SKILL.md` that the agent reads, plus any references, templates,
 scripts or evals it needs.
 
-**[See the design samples →](https://rohitjz.github.io/skills/)** Eight mediums, one method, all render-tested.
+Browse them at **[rohitjz.github.io/skills](https://rohitjz.github.io/skills/)**.
 
 ```
 skills/
@@ -19,8 +19,7 @@ skills/
 ### Design
 | Skill | What it does |
 |---|---|
-| [sketchbook-ui](skills/design/sketchbook-ui) | Hand-drawn pages, newsletters and charts: pencil boxes, highlighter, doodles, xkcd-style charts, email export. [Live example](https://rohitjz.github.io/sketchbook-ui/examples/lets-encrypt-10-years/) |
-| [medium-first-design](skills/design/medium-first-design) | The first-principles method behind sketchbook-ui: borrow a physical medium (blueprint, museum, lab notebook, zine, receipt…) and rebuild it in code. Library of 8 mediums. |
+| [analog-ui](skills/design/analog-ui) | Design that looks made by hand, not AI-templated: borrow a real medium (sketchbook, blueprint, museum, lab notebook, riso zine, receipt, field journal, departure board) and rebuild it in code. `/analog-ui sketchbook` jumps straight to one. [Gallery](https://rohitjz.github.io/skills/skills/design/analog-ui/gallery/) |
 | [elevate-ui](skills/design/elevate-ui) | Turns flat, AI-looking pages into designed ones: bespoke SVG icons, depth, liquid-glass chrome, motion. |
 | [glassify](skills/design/glassify) | Single-file sites with a validated liquid-glass treatment (SVG refraction and layered dome shadows). |
 
@@ -65,12 +64,12 @@ git clone https://github.com/rohitjz/skills && cd skills
 ./install.sh                             # all skills -> ~/.claude/skills
 ./install.sh --target copilot            # all skills -> ~/.copilot/skills
 ./install.sh --category design           # one category
-./install.sh sketchbook-ui council       # just these
+./install.sh analog-ui council          # just these
 ./install.sh --link                      # symlink, so `git pull` updates them
 ```
 
 To install one skill by hand, copy its folder, for example
-`cp -R skills/design/sketchbook-ui ~/.claude/skills/`.
+`cp -R skills/design/analog-ui ~/.claude/skills/`.
 
 ## Tests
 
@@ -97,7 +96,6 @@ screenshots as an artifact.
 MIT ([LICENSE](LICENSE)), except `skills/finance/`, which is Apache-2.0.
 
 Several skills also have standalone repos with demos and history:
-[sketchbook-ui](https://github.com/rohitjz/sketchbook-ui) ·
 [elevate-ui](https://github.com/rohitjz/elevate-ui) ·
 [distinctive-positioning](https://github.com/rohitjz/distinctive-positioning) ·
 [clear-writing-for-pms](https://github.com/rohitjz/clear-writing-for-pms) ·

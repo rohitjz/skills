@@ -103,9 +103,11 @@ def _board(page):
 
 
 def samples(only=None):
-    gallery = ROOT / "index.html"
-    if gallery.exists() and (not only or only == "gallery"):
-        yield "gallery", gallery
+    pages = [("catalog", ROOT / "index.html")]
+    pages += [(f"{p.parent.parent.name}-gallery", p) for p in sorted(ROOT.glob("skills/*/*/gallery/index.html"))]
+    for name, p in pages:
+        if p.exists() and (not only or only == name):
+            yield name, p
     for p in sorted(ROOT.glob("skills/**/examples/*/index.html")):
         name = p.parent.name
         if not only or only == name:
