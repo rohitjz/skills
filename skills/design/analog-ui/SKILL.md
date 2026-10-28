@@ -113,6 +113,9 @@ Unless the medium itself calls for them, don't use:
 - identical rounded cards with the same grey shadow;
 - tracked-out ALL-CAPS labels above every heading;
 - emoji as icons, or "→" appended to every link;
+- a headline split into a plain line and a muted italic line;
+- a slogan for a headline. The headline says what the reader gets or must know ("Make any page
+  look made by hand"), not a clever line about the method ("One method, eight mediums");
 - cream background, serif display font and terracotta accent;
 - black background with a single acid-green accent.
 
