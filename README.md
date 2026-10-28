@@ -1,6 +1,6 @@
 # Skills
 
-My agent skills for Claude Code and GitHub Copilot, in one place: **17 skills in 4 categories.**
+**Get AI work you'd put your name on.** Skills for Claude Code and GitHub Copilot: pages that don't look generated, positioning backed by evidence, writing people finish, financial models that add up.
 Each skill is a folder with a `SKILL.md` that the agent reads, plus any references, templates,
 scripts or evals it needs.
 
