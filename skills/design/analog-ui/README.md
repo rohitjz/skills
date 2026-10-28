@@ -17,7 +17,7 @@ a reason to be there.
 | Architect's blueprint | `/analog-ui blueprint` | Roadmap | [blueprint-roadmap](mediums/blueprint/examples/blueprint-roadmap/index.html) |
 | Museum exhibit | `/analog-ui museum` | Quarterly review | [museum-qbr](mediums/museum/examples/museum-qbr/index.html) |
 | Lab notebook | `/analog-ui lab-notebook` | Incident report | [lab-notebook-incident](mediums/lab-notebook/examples/lab-notebook-incident/index.html) |
-| Risograph zine | `/analog-ui riso-zine` | Launch | [riso-launch](mediums/riso-zine/examples/riso-launch/index.html) |
+| Risograph zine | `/analog-ui riso-zine` | Launch | [story-launch-zine](mediums/riso-zine/examples/story-launch-zine/index.html) (flipbook), [riso-launch](mediums/riso-zine/examples/riso-launch/index.html) (web page) |
 | Receipt and price tags | `/analog-ui receipt` | Pricing | [receipt-pricing](mediums/receipt/examples/receipt-pricing/index.html) |
 | Field journal | `/analog-ui field-journal` | Feedback digest | [field-journal-feedback](mediums/field-journal/examples/field-journal-feedback/index.html) |
 | Departure board | `/analog-ui departure-board` | Release status | [departure-board-status](mediums/departure-board/examples/departure-board-status/index.html) |

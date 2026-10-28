@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Story zine artboards</title>
+<!-- Artboards for the Story launch zine. Each <section> is one 900x1200 page.
+     Every inked element is tagged with one ink: .p (fluorescent pink) or .b (blue).
+     build.py renders each page once per ink (body.pass-pink / body.pass-blue),
+     where that ink's elements draw in black and everything else disappears,
+     then riso.print_page() prints the two passes onto paper.
+     Open this file directly to see a flat two-colour preview. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Shantell+Sans:wght@400;500;600;700;800&family=Nunito:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--P:#ff486e;--Pt:rgba(255,72,110,.22);--Pt2:rgba(255,72,110,.45);--B:#103e76;--Bt:rgba(16,62,118,.16);--Bt3:rgba(16,62,118,.17);--Bt2:rgba(16,62,118,.3);--K:#fff}
+  body.pass-pink{--P:#000;--Pt:rgba(0,0,0,.22);--Pt2:rgba(0,0,0,.45);--B:transparent;--Bt:transparent;--Bt2:transparent;--Bt3:transparent}
+  body.pass-blue{--B:#000;--Bt:rgba(0,0,0,.16);--Bt2:rgba(0,0,0,.3);--Bt3:rgba(0,0,0,.17);--P:transparent;--Pt:transparent;--Pt2:transparent}
+  body.pass-pink .ab,body.pass-blue .ap,body.pass-blue .kp,body.pass-pink .kb{visibility:hidden}
+  body:not([class]) .kp,body:not([class]) .kb{visibility:hidden}
+  /* the QR prints as a crisp solid in its own pass (see build.py) */
+  body.no-qr .qr{visibility:hidden}
+  body.only-qr section *{visibility:hidden} body.only-qr .qr{visibility:visible}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff;width:900px}
+  body:not([class]){background:#ddd;width:auto;display:flex;flex-wrap:wrap;gap:20px;padding:20px}
+  section{position:relative;width:900px;height:1200px;overflow:hidden;background:#fff}
+  body[class] section{display:none}
+  body[data-page="1"] #p1,body[data-page="2"] #p2,body[data-page="3"] #p3,body[data-page="4"] #p4,
+  body[data-page="5"] #p5,body[data-page="6"] #p6,body[data-page="7"] #p7{display:block}
+  body:not([class]) section{background:#f6ecde}
+  img.ap,img.ab{position:absolute;mix-blend-mode:multiply;display:block}
+  body:not([class]) img.ap{filter:sepia(1) saturate(6) hue-rotate(-50deg) brightness(1.2);opacity:.7}
+  body:not([class]) img.ab{filter:sepia(1) saturate(4) hue-rotate(180deg) brightness(.7);opacity:.85}
+  .abs{position:absolute}
+  .hand{font-family:"Shantell Sans",cursive;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:1.02}
+  .body{font-family:Nunito,sans-serif;font-weight:700;font-size:27px;line-height:1.38}
+  .p{color:var(--P)} .b{color:var(--B)}
+  /* second-drum ghost: the heading's shadow prints in the other ink, offset */
+  .mis{text-shadow:5px 4px 0 var(--Pt2)} .misb{text-shadow:-4px 4px 0 var(--Bt2)}
+  .rough{filter:url(#rough)}
+  svg .sp{stroke:var(--P)} svg .sb{stroke:var(--B)} svg .fp{fill:var(--P)} svg .fb{fill:var(--B)} svg .fk{fill:var(--K)}
+  svg{position:absolute;overflow:visible}
+  svg path,svg line,svg rect,svg circle,svg polyline{fill:none;stroke-linecap:round;stroke-linejoin:round}
+  /* knockouts: paper showing through one ink (white = no ink in that pass) */
+  .kp,.kb{background:#fff}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter></svg>
+
+<!-- 1 COVER -->
+<section id="p1">
+  <img class="ap" src="art/cover-pink.png" alt="" style="left:0;top:-51px;width:900px;height:1251px">
+  <img class="ab" src="art/cover-blue.png" alt="" style="left:0;top:-51px;width:900px;height:1251px">
+  <div class="abs p" style="left:38px;top:-26px;font-family:'Lilita One';font-size:318px;letter-spacing:-4px;line-height:1.04;transform:scaleX(.9);transform-origin:left">STORY</div>
+  <div class="abs hand b" style="left:392px;top:330px;font-size:51px;line-height:1.12;font-weight:700;transform:rotate(-4deg)">Your stories<br>make a bigger<br>you.</div>
+  <div class="abs hand b" style="left:40px;top:1045px;font-size:25px;line-height:1.3;font-weight:700">An AI-native app<br>for people who<br>want to communicate<br>better.</div>
+  <div class="abs hand b" style="right:42px;top:1132px;font-size:25px;font-weight:700">Vol. 1 · Oct 2026</div>
+</section>
+
+<!-- 2 INTRODUCTION -->
+<section id="p2">
+  <div class="abs hand b mis" style="left:70px;top:84px;font-size:70px">You did<br>the work.</div>
+  <!-- the moments drift off the page: each note lighter and smaller than the last -->
+  <svg style="left:560px;top:0" width="340" height="330" viewBox="0 0 340 330"><path class="sp" style="stroke-width:4;stroke-dasharray:2 12" d="M110 300 C 60 230, 70 170, 120 150 M 210 120 C 230 70, 250 40, 290 10"/></svg>
+  <div class="abs rough" style="left:706px;top:22px;width:150px;height:110px;background:var(--Pt);border:4px dashed var(--B);transform:rotate(10deg)"></div>
+  <div class="abs hand b" style="left:726px;top:56px;font-size:30px;transform:rotate(10deg);text-transform:none">Lesson</div>
+  <div class="abs rough" style="left:620px;top:140px;width:226px;height:140px;background:var(--Pt);border:5px solid var(--B);transform:rotate(-7deg)"></div>
+  <div class="abs hand b" style="left:646px;top:184px;font-size:34px;transform:rotate(-7deg);text-transform:none">Hard call</div>
+  <div class="abs rough" style="left:632px;top:300px;width:236px;height:170px;background:var(--Pt2);border:5px solid var(--B);transform:rotate(4deg)"></div>
+  <div class="abs hand b" style="left:660px;top:330px;font-size:44px;transform:rotate(4deg);text-transform:none">Big win!</div>
+  <div class="abs hand b" style="left:664px;top:392px;font-size:23px;font-weight:600;transform:rotate(4deg);text-transform:none">shipped on time</div>
+  <div class="abs hand p" style="left:70px;top:246px;font-size:54px;transform:rotate(-2deg)">Then the story<br>got lost.</div>
+  <p class="abs body b" style="left:72px;top:418px;width:520px">Wins, hard calls, lessons. They fade fast. So when a review or an interview comes round, this is what's left:</p>
+  <svg style="left:52px;top:600px" width="680" height="200" viewBox="0 0 560 200" preserveAspectRatio="none">
+    <path class="sp" style="fill:var(--Pt);stroke-width:5" d="M30 20 C 140 6, 420 4, 530 22 C 552 50, 556 110, 534 136 C 430 150, 220 150, 150 146 L 92 192 L 104 144 C 60 140, 30 136, 22 118 C 10 90, 12 46, 30 20 Z"/>
+  </svg>
+  <div class="abs hand b" style="left:112px;top:650px;font-size:44px;font-weight:700;text-transform:none">I helped with some stuff.</div>
+  <svg style="left:104px;top:670px" width="560" height="40" viewBox="0 0 460 40" preserveAspectRatio="none"><path class="sb" style="stroke-width:6" d="M4 24 C 80 10, 160 30, 240 16 S 380 8, 456 22 M 20 34 C 120 22, 300 30, 440 14"/></svg>
+  <svg style="left:520px;top:760px" width="160" height="150" viewBox="0 0 160 150"><path class="sp" style="stroke-width:7" d="M20 10 C 80 20, 120 60, 130 128 M 108 104 L 132 134 L 150 100"/></svg>
+  <div class="abs hand p" style="left:640px;top:790px;font-size:34px;font-weight:700;text-transform:none;transform:rotate(6deg)">with Story</div>
+  <svg style="left:150px;top:890px" width="700" height="200" viewBox="0 0 700 200">
+    <path class="sb" style="stroke-width:5" d="M24 16 C 200 4, 520 6, 676 20 C 694 60, 694 130, 672 160 C 520 172, 300 172, 140 166 L 70 196 L 92 160 C 50 154, 24 148, 18 128 C 8 96, 10 50, 24 16 Z"/>
+  </svg>
+  <div class="abs hand b" style="left:196px;top:918px;width:620px;font-size:34px;font-weight:700;line-height:1.24;text-transform:none">"I found the bug that would have broken checkout, the night before launch."</div>
+  <p class="abs body b" style="left:72px;top:1104px;width:760px;font-weight:700">Story keeps the real moments, in your own words, and helps you tell them well.</p>
+</section>
+
+<!-- 3 FEATURES -->
+<section id="p3">
+  <div class="abs hand b mis" style="left:66px;top:76px;font-size:48px">Capture<br>real<br>moments</div>
+  <p class="abs body b" style="left:68px;top:250px;width:360px;font-size:26px">Quickly save stories from your work, life and everything in between.</p>
+  <!-- phone -->
+  <div class="abs" style="left:520px;top:58px;width:318px;height:440px;border:6px solid var(--B);border-radius:44px"></div>
+  <div class="abs" style="left:526px;top:64px;width:306px;height:44px;background:var(--B);border-radius:38px 38px 0 0"></div>
+  <div class="abs kb" style="left:640px;top:80px;width:78px;height:9px;border-radius:5px"></div>
+  <div class="abs body b" style="left:556px;top:122px;font-size:31px;font-weight:800">New Story</div>
+  <div class="abs" style="left:640px;top:176px;width:78px;height:78px;border-radius:50%;background:var(--P)"></div>
+  <svg class="kp" style="left:660px;top:190px;background:none" width="38" height="50" viewBox="0 0 38 50"><rect x="11" y="2" width="16" height="28" rx="8" style="fill:#fff;stroke:#fff;stroke-width:2"/><path d="M5 22 C 5 38, 33 38, 33 22 M19 38 L19 47" style="stroke:#fff;stroke-width:4.5"/></svg>
+  <div class="abs" style="left:548px;top:276px;width:268px">
+    <div class="body b" style="font-size:21px;border:3px solid var(--B);border-radius:10px;padding:6px 12px;white-space:nowrap;margin-bottom:12px">Meeting with team</div>
+    <div class="body b" style="font-size:21px;border:3px solid var(--B);border-radius:10px;padding:6px 12px;white-space:nowrap;margin-bottom:12px">Overcame a challenge</div>
+    <div class="body b" style="font-size:21px;border:3px solid var(--B);border-radius:10px;padding:6px 12px;white-space:nowrap;margin-bottom:12px">A funny moment</div>
+    <div class="body b" style="font-size:21px;border:3px solid var(--B);border-radius:10px;padding:6px 12px;white-space:nowrap">A lesson learned</div>
+  </div>
+  <svg style="left:310px;top:360px" width="210" height="190" viewBox="0 0 210 190"><path class="sp" style="stroke-width:7" d="M200 8 C 120 30, 70 80, 48 170 M 22 140 L 46 174 L 76 146"/></svg>
+  <div class="abs hand b mis" style="left:66px;top:534px;font-size:46px">Turn them<br>into better<br>stories</div>
+  <p class="abs body b" style="left:68px;top:702px;width:380px;font-size:24px">Get AI suggestions to make your stories clearer, more engaging and tailored for your audience.</p>
+  <img class="ap" src="art/book-small-pink.png" alt="" style="left:250px;top:832px;width:252px;height:140px">
+  <img class="ab" src="art/book-small-blue.png" alt="" style="left:250px;top:832px;width:252px;height:140px">
+  <!-- AI suggestions -->
+  <svg style="left:478px;top:560px" width="372" height="300" viewBox="0 0 372 300"><path class="sp" style="stroke-width:6" d="M24 10 C 130 4, 260 4, 352 14 C 366 70, 366 200, 352 252 C 260 262, 150 262, 96 258 L 60 296 L 64 256 C 40 254, 22 250, 16 236 C 6 170, 8 70, 24 10 Z"/></svg>
+  <div class="abs hand b" style="left:520px;top:590px;font-size:32px">AI suggestions</div>
+  <div class="abs" style="left:520px;top:642px">
+    <div class="hand b" style="font-size:25px;font-weight:600;text-transform:none;margin-bottom:12px;padding-left:44px;position:relative"><svg style="left:0;top:4px" width="30" height="26" viewBox="0 0 30 26"><path class="sp" style="stroke-width:5" d="M3 14 L11 22 L27 3"/></svg>Clearer structure</div>
+    <div class="hand b" style="font-size:25px;font-weight:600;text-transform:none;margin-bottom:12px;padding-left:44px;position:relative"><svg style="left:0;top:4px" width="30" height="26" viewBox="0 0 30 26"><path class="sp" style="stroke-width:5" d="M3 14 L11 22 L27 3"/></svg>Stronger hook</div>
+    <div class="hand b" style="font-size:25px;font-weight:600;text-transform:none;margin-bottom:12px;padding-left:44px;position:relative"><svg style="left:0;top:4px" width="30" height="26" viewBox="0 0 30 26"><path class="sp" style="stroke-width:5" d="M3 14 L11 22 L27 3"/></svg>Add outcome</div>
+    <div class="hand b" style="font-size:25px;font-weight:600;text-transform:none;padding-left:44px;position:relative"><svg style="left:0;top:4px" width="30" height="26" viewBox="0 0 30 26"><path class="sp" style="stroke-width:5" d="M3 14 L11 22 L27 3"/></svg>Match your audience</div>
+  </div>
+  <svg style="left:560px;top:872px" width="80" height="110" viewBox="0 0 80 110"><path class="sp" style="stroke-width:7" d="M60 4 C 40 40, 30 66, 30 100 M 10 78 L 30 104 L 52 80"/></svg>
+  <div class="abs hand b mis" style="left:66px;top:972px;font-size:46px">Use them<br>everywhere</div>
+  <p class="abs body b" style="left:68px;top:1082px;width:520px;font-size:24px;line-height:1.32">Create posts, prepare for performance reviews, practice interviews, or just reflect.</p>
+  <!-- four use tiles -->
+  <div class="abs" style="left:640px;top:990px;width:210px;height:190px">
+    <svg style="left:0;top:0" width="210" height="190" viewBox="0 0 210 190">
+      <rect class="sp" x="4" y="4" width="94" height="84" rx="12" style="fill:var(--Pt2);stroke-width:3"/>
+      <rect class="sp" x="112" y="4" width="94" height="84" rx="12" style="fill:var(--Pt2);stroke-width:3"/>
+      <rect class="sp" x="4" y="102" width="94" height="84" rx="12" style="fill:var(--Pt2);stroke-width:3"/>
+      <rect class="sp" x="112" y="102" width="94" height="84" rx="12" style="fill:var(--Pt2);stroke-width:3"/>
+      <rect class="sb" x="28" y="22" width="46" height="48" rx="6" style="stroke-width:4.5"/><path class="sb" style="stroke-width:4" d="M38 38 H64 M38 50 H64 M38 60 H54"/>
+      <path class="sb" style="stroke-width:4.5" d="M138 24 H180 V70 H138 Z M146 36 L162 52 L176 36"/>
+      <rect class="sb" x="40" y="116" width="22" height="34" rx="11" style="stroke-width:4.5"/><path class="sb" style="stroke-width:4.5" d="M32 142 C 32 166, 70 166, 70 142 M51 160 V172"/>
+      <path class="sb" style="stroke-width:4.5" d="M132 118 H186 V156 H160 L146 170 V156 H132 Z M144 132 H174 M144 143 H164"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 4 USE CASES -->
+<section id="p4">
+  <div class="abs hand p misb" style="left:64px;top:62px;font-size:72px;transform:rotate(-3deg)">Same stories.<br>A brighter you.</div>
+  <div class="abs" style="left:56px;top:286px;width:382px;height:420px;background:var(--Bt3)"></div>
+  <div class="abs" style="left:462px;top:286px;width:382px;height:420px;background:var(--Bt3)"></div>
+  <div class="abs" style="left:56px;top:730px;width:382px;height:420px;background:var(--Bt3)"></div>
+  <div class="abs" style="left:462px;top:730px;width:382px;height:420px;background:var(--Bt3)"></div>
+  <p class="abs body b" style="left:56px;top:304px;width:382px;text-align:center;font-weight:800;font-size:29px;line-height:1.2">Be a better<br>communicator</p>
+  <p class="abs body b" style="left:462px;top:304px;width:382px;text-align:center;font-weight:800;font-size:29px;line-height:1.2">Prepare for<br>career growth</p>
+  <p class="abs body b" style="left:56px;top:748px;width:382px;text-align:center;font-weight:800;font-size:29px;line-height:1.2">Reflect and<br>know yourself</p>
+  <p class="abs body b" style="left:462px;top:748px;width:382px;text-align:center;font-weight:800;font-size:29px;line-height:1.2">Build your<br>personal brand</p>
+  <img class="ap" src="art/v-communicator-pink.png" alt="" style="left:80px;top:410px;width:334px;height:272px">
+  <img class="ab" src="art/v-communicator-blue.png" alt="" style="left:80px;top:410px;width:334px;height:272px">
+  <img class="ap" src="art/v-mountain-pink.png" alt="" style="left:484px;top:410px;width:338px;height:265px">
+  <img class="ab" src="art/v-mountain-blue.png" alt="" style="left:484px;top:410px;width:338px;height:265px">
+  <img class="ap" src="art/v-book-pink.png" alt="" style="left:80px;top:858px;width:334px;height:256px">
+  <img class="ab" src="art/v-book-blue.png" alt="" style="left:80px;top:858px;width:334px;height:256px">
+  <img class="ap" src="art/v-laptop-pink.png" alt="" style="left:484px;top:858px;width:338px;height:250px">
+  <img class="ab" src="art/v-laptop-blue.png" alt="" style="left:484px;top:858px;width:338px;height:250px">
+</section>
+
+<!-- 5 YOUR WORDS (replaces the mock's "Community" page: no real testimonials exist yet) -->
+<section id="p5">
+  <div class="abs hand b mis" style="left:66px;top:80px;font-size:76px">Your words<br>stay yours.</div>
+  <div class="abs" style="left:66px;top:300px;width:420px">
+    <div style="position:relative;padding-left:66px;margin-bottom:40px">
+      <div class="abs hand p" style="left:0;top:-10px;font-size:62px;transform:rotate(-6deg)">1</div>
+      <p class="hand b" style="font-size:32px;line-height:1.1;text-transform:none;font-weight:800">Transcribed on your iPhone.</p>
+      <p class="body b" style="font-size:25px;line-height:1.3;margin-top:6px">Voice notes don't need the cloud.</p>
+    </div>
+    <div style="position:relative;padding-left:66px;margin-bottom:40px">
+      <div class="abs hand p" style="left:0;top:-10px;font-size:62px;transform:rotate(-6deg)">2</div>
+      <p class="hand b" style="font-size:32px;line-height:1.1;text-transform:none;font-weight:800">AI is opt-in.</p>
+      <p class="body b" style="font-size:25px;line-height:1.3;margin-top:6px">Turn it off and Story still works.</p>
+    </div>
+    <div style="position:relative;padding-left:66px;margin-bottom:40px">
+      <div class="abs hand p" style="left:0;top:-10px;font-size:62px;transform:rotate(-6deg)">3</div>
+      <p class="hand b" style="font-size:32px;line-height:1.1;text-transform:none;font-weight:800">Ideas show their sources.</p>
+      <p class="body b" style="font-size:25px;line-height:1.3;margin-top:6px">Each one quotes your words.</p>
+    </div>
+    <div style="position:relative;padding-left:66px;margin-bottom:40px">
+      <div class="abs hand p" style="left:0;top:-10px;font-size:62px;transform:rotate(-6deg)">4</div>
+      <p class="hand b" style="font-size:32px;line-height:1.1;text-transform:none;font-weight:800">You check it first.</p>
+      <p class="body b" style="font-size:25px;line-height:1.3;margin-top:6px">Nothing is shared until you confirm.</p>
+    </div>
+  </div>
+  <!-- an iPhone that keeps the recording: waveform, transcript, and a lock -->
+  <div class="abs rough" style="left:470px;top:330px;width:420px;height:420px;border-radius:50%;background:var(--Pt2)"></div>
+  <svg class="rough" style="left:520px;top:360px" width="340" height="760" viewBox="0 0 340 760">
+    <rect x="30" y="20" width="270" height="560" rx="44" style="fill:var(--K);stroke:none"/>
+    <rect class="sb" x="24" y="14" width="270" height="560" rx="44" style="stroke-width:9"/>
+    <path class="sb" style="stroke-width:7" d="M128 44 H190"/>
+    <path class="sb" style="stroke-width:9" d="M72 150 V200 M100 128 V222 M128 156 V194 M156 112 V238 M184 140 V210 M212 160 V190 M240 132 V218"/>
+    <path class="sp" style="stroke-width:7" d="M64 290 H250 M64 334 H228 M64 378 H244 M64 422 H170"/>
+    <rect x="160" y="436" width="170" height="150" rx="20" class="fp" style="stroke:none"/>
+    <rect class="sb" x="154" y="430" width="170" height="150" rx="20" style="stroke-width:8"/>
+    <path class="sb" style="stroke-width:9" d="M190 430 V384 C190 330, 288 330, 288 384 V430"/>
+    <circle class="fk" cx="239" cy="494" r="16"/><path style="stroke:var(--K);stroke-width:10" d="M239 500 V530"/>
+  </svg>
+  <div class="abs" style="left:-20px;top:1080px;width:940px;height:170px;background:var(--Pt2);transform:rotate(-1.2deg)"></div>
+  <div class="abs hand b" style="left:66px;top:1112px;font-size:44px;transform:rotate(-1.2deg);text-transform:none">Your story. Your call.</div>
+</section>
+
+<!-- 6 CTA -->
+<section id="p6">
+  <div class="abs hand b mis" style="left:66px;top:66px;font-size:80px">Be part<br>of what's next.</div>
+  <div class="abs" style="left:0;top:240px;width:900px;height:700px;overflow:hidden">
+    <img class="ap" src="art/landscape-pink.png" alt="" style="left:0;top:-40px;width:900px;height:774px">
+    <img class="ab" src="art/landscape-blue.png" alt="" style="left:0;top:-40px;width:900px;height:774px">
+  </div>
+  <div class="abs" style="left:-20px;top:922px;width:940px;height:320px;background:var(--Pt2);transform:rotate(-1.2deg)"></div>
+  <div class="abs hand b" style="left:66px;top:972px;font-size:50px;transform:rotate(-2deg)">Your stories<br>matter.</div>
+  <div class="abs kp" style="left:70px;top:1092px;width:300px;height:60px;transform:rotate(-3deg)"></div>
+  <div class="abs hand b" style="left:94px;top:1102px;font-size:31px;transform:rotate(-3deg)">Download Story</div>
+  <div class="abs kp" style="left:618px;top:950px;width:234px;height:234px;transform:rotate(1deg)"></div>
+  <img class="ab qr" src="art/qr-blue.png" alt="" style="left:635px;top:967px;width:200px;height:200px;transform:rotate(1deg)">
+  <div class="abs hand b" style="left:98px;top:1160px;font-size:23px;font-weight:700">iOS · coming soon</div>
+</section>
+
+<!-- 7 BACK COVER -->
+<section id="p7">
+  <div class="abs p" style="left:0;width:900px;top:330px;text-align:center;font-family:'Lilita One';font-size:170px;letter-spacing:-2px">STORY</div>
+  <p class="abs body b" style="left:150px;top:600px;width:600px;text-align:center;font-size:30px">Printed in two inks: fluorescent pink and medium blue.</p>
+  <p class="abs body b" style="left:150px;top:720px;width:600px;text-align:center;font-size:30px">Story is in development for iPhone.</p>
+  <p class="abs hand p" style="left:150px;top:800px;width:600px;text-align:center;font-size:30px;font-weight:700;text-transform:none">Made with analog-ui</p>
+  <div class="abs" style="left:0;top:900px;width:900px;height:300px;overflow:hidden">
+    <img class="ap" src="art/landscape-pink.png" alt="" style="left:0;top:-470px;width:900px;height:774px">
+    <img class="ab" src="art/landscape-blue.png" alt="" style="left:0;top:-470px;width:900px;height:774px">
+  </div>
+  <svg class="rough" style="left:640px;top:96px;transform:rotate(-12deg)" width="180" height="180" viewBox="0 0 180 180"><circle class="sp" cx="90" cy="90" r="80" style="stroke-width:6"/><circle class="sp" cx="90" cy="90" r="64" style="stroke-width:3"/></svg>
+  <div class="abs hand p" style="left:640px;top:150px;width:180px;text-align:center;font-size:30px;line-height:1.1;transform:rotate(-12deg)">Vol. 1<br><span style="font-size:22px">Oct 2026</span></div>
+</section>
+
+</body>
+</html>

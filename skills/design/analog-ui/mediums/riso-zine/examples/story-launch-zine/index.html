@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product launch as a risograph zine · analog-ui example 05</title>
+<meta name="description" content="A product launch told as a two-ink risograph zine you can flip through: Story, an app for capturing real moments and telling them well.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Source+Sans+3:wght@400;600;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="pages/page-1-900.webp">
+<style>
+  :root{--bg:#f7f2e9;--panel:#f3eee5;--ink:#2a3966;--navy:#23325c;--grey:#626b84;--pink:#e2405f;--tape:#fac6ca;--tile:#e9e8ef;--line:#e2d8ca;--focus:#2a3966;
+    --serif:"Source Serif 4",Georgia,serif;--sans:"Source Sans 3",system-ui,sans-serif;--hand:"Patrick Hand","Comic Neue",cursive;
+    --pw:clamp(220px,min(calc((100vw - 320px) / 3.04),calc((100vh - 250px) * .75)),420px)}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .2 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");color:var(--ink);font-family:var(--sans)}
+  button{font:inherit;color:inherit}
+  :focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:4px}
+  .board{display:grid;grid-template-columns:minmax(0,1fr) 272px;grid-template-areas:"top panel" "stage panel" "notes notes";grid-template-rows:auto 1fr auto;min-height:100vh}
+  .board>*{min-width:0}
+
+  /* title row */
+  .top{grid-area:top;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 20px;padding:24px 22px 4px 30px;align-items:start}
+  .eyebrow{margin:0;font-size:13px;font-weight:700;letter-spacing:.09em;color:var(--pink)}
+  h1{margin:4px 0 0;font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.1vw,52px);white-space:nowrap;line-height:1.04;letter-spacing:-.012em;color:var(--ink)}
+  .sub{margin:6px 0 0;font-family:var(--serif);font-size:clamp(16px,1.48vw,22px);color:var(--ink)}
+  .tags{margin:2px 0 0;display:grid;gap:5px;width:246px}
+  .tags div{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center}
+  .tags dt{background:var(--tape);color:#c22a4a;font-size:13.5px;padding:2px 9px;transform:rotate(-2deg);white-space:nowrap;box-shadow:0 1px 0 rgba(0,0,0,.04)}
+  .tags dd{margin:0;font-family:var(--hand);font-size:16.5px;line-height:1.12;color:var(--navy);transform:rotate(-2deg)}
+  .tags div:last-child dd{font-size:13px;line-height:1.08}
+
+  /* stage */
+  .stage{grid-area:stage;padding:14px 18px 12px 22px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+  .desk{display:flex;align-items:center;justify-content:center;gap:10px;width:100%}
+  .copy{flex:none;border:0;padding:0;background:none;cursor:zoom-in;transform:rotate(-.6deg);box-shadow:1px 1px 0 #e4d9c7,2px 3px 0 #d6c9b4,3px 4px 0 #ebe2d3,0 2px 3px rgba(60,40,30,.18),0 18px 26px -14px rgba(60,40,30,.55)}
+  .copy img{display:block;width:var(--pw);height:auto;aspect-ratio:3/4}
+  .bookwrap{position:relative;display:flex;align-items:center}
+  .navbtn{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid var(--ink);background:rgba(255,255,255,.7);cursor:pointer;display:grid;place-items:center}
+  .navbtn:hover{background:#fff}
+  .navbtn:disabled{opacity:.25;cursor:default}
+  .navbtn svg{width:18px;height:18px}
+  .spread{position:relative;z-index:0;display:flex;perspective:2200px;touch-action:pan-y}
+  /* the page block under the open spread: stacked edges and a contact shadow */
+  .spread::before{content:"";position:absolute;z-index:-1;left:-5px;right:-5px;top:3px;bottom:-7px;border-radius:3px 3px 6px 6px;background:repeating-linear-gradient(0deg,#ddd1bd 0 1px,#f1e8da 1px 3px);box-shadow:0 2px 3px rgba(60,40,30,.2),0 22px 30px -14px rgba(60,40,30,.6)}
+  .spread::after{content:"";position:absolute;z-index:4;top:0;bottom:0;left:50%;width:84px;margin-left:-42px;pointer-events:none;
+    background:linear-gradient(90deg,rgba(80,50,40,0),rgba(80,50,40,.10) 38%,rgba(70,40,30,.30) 49.5%,rgba(255,250,240,.18) 51%,rgba(80,50,40,.10) 60%,rgba(80,50,40,0))}
+  .single .spread::after{display:none}
+  .pg{position:relative;display:block;border:0;padding:0;background:#f4eadc;cursor:zoom-in}
+  .pg img,.leaf img{display:block;width:var(--pw);height:auto;aspect-ratio:3/4;user-select:none;-webkit-user-drag:none}
+  .single .pg.r,.single .copy{display:none}
+  .leaf{position:absolute;top:0;width:var(--pw);height:100%;transform-style:preserve-3d;transition:transform .72s cubic-bezier(.45,.05,.25,1);z-index:3;pointer-events:none}
+  .leaf .face{position:absolute;inset:0;backface-visibility:hidden;background:#f4eadc}
+  .leaf .face.back{transform:rotateY(180deg)}
+  .leaf .face::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(60,40,30,.18),rgba(60,40,30,0) 30%)}
+  .leaf .face.back::after{background:linear-gradient(270deg,rgba(60,40,30,.18),rgba(60,40,30,0) 30%)}
+  .nav{display:flex;align-items:center;gap:18px;margin:16px 0 0}
+  .hint{margin:0;font-family:var(--hand);font-size:19px;color:var(--navy);display:flex;align-items:center;gap:12px}
+  .hint svg{width:30px;height:20px}
+  .indicator{margin:2px 0 0;font-size:14px;color:var(--grey);font-variant-numeric:tabular-nums}
+
+  /* side panel */
+  .panel{grid-area:panel;background:var(--panel);border-left:1px solid var(--line);padding:22px 20px 20px}
+  .panel h2{margin:0 0 12px;font-size:12.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:var(--ink)}
+  .feats{list-style:none;margin:0 0 14px;padding:0;display:grid;gap:2px}
+  .feats button{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:center;width:100%;text-align:left;border:0;background:none;padding:4px;border-radius:8px;cursor:pointer}
+  .feats button:hover{background:rgba(42,57,102,.05)}
+  .ic{width:40px;height:40px;border-radius:9px;background:var(--tile);display:grid;place-items:center}
+  .ic svg{width:22px;height:22px}
+  .feats b{display:block;font-size:15px;font-weight:700;color:var(--ink)}
+  .feats span span{display:block;font-size:12.5px;line-height:1.25;color:var(--grey)}
+  .rule{border:0;border-top:1px solid var(--line);margin:0 0 14px}
+  .thumbs{list-style:none;margin:0 0 14px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 9px;align-items:start}
+  .thumbs button{display:block;width:100%;border:0;background:none;padding:0;cursor:pointer;text-align:left}
+  .thumbs img{display:block;width:100%;height:auto;aspect-ratio:3/4;box-shadow:0 1px 2px rgba(60,40,30,.15),0 8px 14px -10px rgba(60,40,30,.5);outline:2px solid transparent;outline-offset:2px;transition:outline-color .15s}
+  .thumbs img{outline-width:1.5px}
+  .thumbs button[aria-current="true"] img{outline-color:var(--pink)}
+  .thumbs button[aria-current="true"] .lb{color:var(--navy)}
+  .thumbs .lb{display:block;margin-top:5px;font-size:12px;letter-spacing:-.01em;line-height:1.2;color:var(--grey)}
+  .modes{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);gap:6px}
+  .modes button{display:flex;align-items:center;justify-content:center;gap:7px;height:36px;padding:0 4px;border:1px solid var(--line);border-radius:7px;background:#fff;font-size:12.5px;white-space:nowrap;cursor:pointer}
+  .modes button[aria-pressed="true"]{background:#e3ebf7;border-color:#7d98c9;color:var(--navy)}
+  .modes svg{flex:none;width:17px;height:17px}
+
+  /* notes */
+  .notes{grid-area:notes;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);background:var(--bg)}
+  .notes section{padding:12px 22px 14px;border-left:1px solid var(--line)}
+  .notes section:first-child{border-left:0}
+  .notes h2{display:flex;align-items:center;gap:8px;margin:0 0 7px;font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--pink)}
+  .notes h2 svg{width:19px;height:19px}
+  .notes ul{margin:0;padding-left:16px;display:grid;gap:3px}
+  .notes li{font-size:12.5px;line-height:1.34;color:var(--grey)}
+  .notes li b{color:var(--navy);font-weight:700;margin-right:5px}
+  .ico{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+  /* zoom */
+  dialog.zoom{border:0;padding:0;margin:0;width:100vw;height:100vh;max-width:none;max-height:none;background:rgba(26,24,32,.95);color:#fff}
+  dialog.zoom::backdrop{background:transparent}
+  .zbar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;z-index:2;pointer-events:none}
+  .zbar>*{pointer-events:auto}
+  .zbar p{margin:0;font-size:15px}
+  .zbtn{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.35);color:#fff;cursor:pointer;display:grid;place-items:center}
+  .zbtn svg{width:18px;height:18px}
+  .zbtn:focus-visible{outline-color:#fff}
+  .zscroll{position:absolute;inset:0;overflow:auto;display:flex;padding:60px 70px 30px}
+  .zscroll img{margin:auto;display:block;max-height:calc(100vh - 92px);max-width:100%;width:auto;height:auto;cursor:zoom-in;box-shadow:0 20px 50px -20px #000}
+  .zscroll.detail img{max-height:none;max-width:none;width:1800px;cursor:zoom-out}
+  .zprev,.znext{position:fixed;top:50%;transform:translateY(-50%);z-index:2}
+  .zprev{left:12px} .znext{right:12px}
+  .zhelp{position:fixed;bottom:10px;left:0;right:0;text-align:center;margin:0;font-size:13px;color:rgba(255,255,255,.75)}
+
+  .hint .short{display:none}
+  @media (max-width:1100px){
+    .board{grid-template-columns:1fr;grid-template-areas:"top" "stage" "panel" "notes";grid-template-rows:auto}
+    .panel{border-left:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
+    .panel .rule{display:none}
+    .panel .modes-wrap{grid-column:2}
+    :root{--pw:clamp(220px,min(calc((100vw - 160px) / 3.2),calc((100vh - 200px) * .75)),340px)}
+  }
+  @media (max-width:760px){
+    h1{white-space:normal}
+    .hint .long{display:none} .hint .short{display:inline}
+    :root{--pw:min(calc(100vw - 48px),460px)}
+    .top{grid-template-columns:1fr;padding:20px 18px 4px}
+    .tags{width:auto}
+    .stage{padding:12px 6px 18px}
+    .navbtn{width:36px;height:36px}
+    .panel{grid-template-columns:1fr;padding:20px 18px}
+    .panel .modes-wrap{grid-column:auto}
+    .notes{grid-template-columns:1fr}
+    .notes section{border-left:0;border-top:1px solid var(--line);padding:18px}
+    .zscroll{padding:56px 8px 30px}
+    .zprev,.znext{top:auto;bottom:40px;transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){.leaf{transition:none}.thumbs img{transition:none}}
+</style>
+</head>
+<body>
+<main class="board" id="board">
+  <header class="top">
+    <div>
+      <p class="eyebrow">ANALOG UI / EXAMPLE 05</p>
+      <h1>Product launch as a risograph zine</h1>
+      <p class="sub">A playful, editorial format to announce a launch with personality.</p>
+    </div>
+    <dl class="tags">
+      <div><dt>Use case</dt><dd>Launch a new product</dd></div>
+      <div><dt>Medium</dt><dd>Risograph zine</dd></div>
+      <div><dt>Why this works</dt><dd>Feels human, memorable, and turns a product announcement into a story people want to read.</dd></div>
+    </dl>
+  </header>
+
+  <section class="stage" id="stage" aria-label="Story launch zine, interactive">
+    <div class="desk">
+      <button class="copy" id="copy" type="button" aria-label="Zoom into the cover"><img id="copyimg" src="pages/page-1-900.webp" srcset="pages/page-1-900.webp 900w, pages/page-1-1800.webp 1800w" sizes="360px" width="900" height="1200" alt=""></button>
+      <div class="bookwrap">
+        <div class="spread" id="spread">
+          <button class="pg l" id="pgl" type="button"><img id="imgl" width="900" height="1200" alt=""></button>
+          <button class="pg r" id="pgr" type="button"><img id="imgr" width="900" height="1200" alt=""></button>
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button class="navbtn" id="prev" type="button" aria-label="Previous page"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <p class="hint" aria-hidden="true">
+      <svg viewBox="0 0 30 20"><path class="ico" d="M26 4 C 18 2, 8 6, 6 16 M 2 11 L 6 17 L 11 12"/></svg>
+      <span class="long">Flip through pages to explore</span><span class="short">Swipe to flip</span>
+      <svg viewBox="0 0 30 20"><path class="ico" d="M4 16 C 12 18, 22 14, 24 4 M 19 8 L 24 3 L 28 9"/></svg>
+      </p>
+      <button class="navbtn" id="next" type="button" aria-label="Next page"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <p class="indicator" id="indicator" aria-live="polite"></p>
+  </section>
+
+  <aside class="panel" aria-label="Zine controls">
+    <div>
+      <h2>Interactive experience</h2>
+      <ul class="feats">
+        <li><button type="button" id="f-flip"><span class="ic"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M12 6.5C10 5 6.5 4.5 3.5 5v13c3-.5 6.5 0 8.5 1.5M12 6.5c2-1.5 5.5-2 8.5-1.5v13c-3-.5-6.5 0-8.5 1.5M12 6.5v13"/></svg></span><span><b>Flip through the zine</b><span>Turn pages with arrow keys, click, or swipe on mobile.</span></span></button></li>
+        <li><button type="button" id="f-zoom"><span class="ic"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></span><span><b>Zoom</b><span>Click to zoom in on details.</span></span></button></li>
+        <li><button type="button" id="f-explore"><span class="ic"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r=".6"/><circle cx="4.5" cy="12" r=".6"/><circle cx="4.5" cy="18" r=".6"/></svg></span><span><b>Explore sections</b><span>Jump to a specific page.</span></span></button></li>
+        <li><button type="button" id="f-view"><span class="ic"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><path d="M12 5v14"/></svg></span><span><b>View in different spreads</b><span>Single page or two-page spread.</span></span></button></li>
+      </ul>
+      <hr class="rule">
+    </div>
+    <div>
+      <h2 id="thumbs-h">Page thumbnails</h2>
+      <ol class="thumbs" id="thumbs" aria-labelledby="thumbs-h"></ol>
+    </div>
+    <div class="modes-wrap">
+      <h2>View modes</h2>
+      <div class="modes" role="group" aria-label="View mode">
+        <button type="button" id="mode-spread" aria-pressed="true"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M12 6.5C10 5 6.5 4.5 3.5 5v13c3-.5 6.5 0 8.5 1.5M12 6.5c2-1.5 5.5-2 8.5-1.5v13c-3-.5-6.5 0-8.5 1.5M12 6.5v13"/></svg>Two-page spread</button>
+        <button type="button" id="mode-single" aria-pressed="false"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M6 3.5h8l4 4V20.5H6z M14 3.5v4h4"/></svg>Single page</button>
+      </div>
+    </div>
+  </aside>
+
+  <footer class="notes">
+    <section aria-labelledby="n1">
+      <h2 id="n1"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.4 1.1 2.2h5c0-.8.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg>Design rationale</h2>
+      <ul>
+        <li><b>Fits the moment</b>A launch is a story worth telling; a zine makes it one people pass around.</li>
+        <li><b>Distinctive and human</b>Two inks on paper feel crafted, unlike a typical product page.</li>
+        <li><b>Easy to scan</b>Short sections and pictures explain the product page by page.</li>
+      </ul>
+    </section>
+    <section aria-labelledby="n2">
+      <h2 id="n2"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v4.5a6.5 6.5 0 0 1-6.5 6.5h-.6a6 6 0 0 1-5-2.7L5 15.6a1.6 1.6 0 0 1 2.6-1.8L9 15.5"/></svg>Interaction details</h2>
+      <ul>
+        <li><b>Page navigation</b>Arrow buttons, arrow keys, or swipe.</li>
+        <li><b>Page indicator</b>Shows the current page and the total.</li>
+        <li><b>Zoom</b>Click or tap a page to read the fine details.</li>
+        <li><b>Thumbnails</b>Jump straight to any page.</li>
+        <li><b>Responsive</b>Spread on desktop; one page at a time on mobile.</li>
+      </ul>
+    </section>
+    <section aria-labelledby="n3">
+      <h2 id="n3"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>How it's built</h2>
+      <ul>
+        <li><b>Pages</b>3:4 pages separated into pink and blue, then printed with grain and drum drift.</li>
+        <li><b>Viewer</b>CSS 3D page turns and a little JavaScript. No library.</li>
+        <li><b>Legible</b>Every page zooms to 1800px for the fine print.</li>
+        <li><b>Performance</b>WebP pages in three sizes, loaded only when needed.</li>
+        <li><b>Accessibility</b>Keyboard control, each page's words as alt text, visible focus.</li>
+      </ul>
+    </section>
+  </footer>
+</main>
+
+<dialog class="zoom" id="zoom" aria-labelledby="zlabel">
+  <div class="zbar"><p id="zlabel"></p><button class="zbtn" id="zclose" type="button" aria-label="Close zoom"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="zscroll" id="zscroll"></div>
+  <button class="zbtn zprev" id="zprev" type="button" aria-label="Previous page"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="zbtn znext" id="znext" type="button" aria-label="Next page"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  <p class="zhelp">Click the page to see it at full size. Arrow keys turn pages. Esc closes.</p>
+</dialog>
+
+<script>
+(function(){
+  "use strict";
+  // Page words double as alt text (generated by src/build.py into pages/pages.json).
+  var PAGES = {
+    1:{label:"Cover",alt:"Cover. STORY, in large pink letters. 'Your stories make a bigger you.' A woman writes in a notebook beside a cup and a cat, looking out over pine trees and pink mountains. 'An AI-native app for people who want to communicate better.' Vol. 1, Oct 2026."},
+    2:{label:"Introduction",short:"Intro",alt:"Introduction. 'You did the work. Then the story got lost.' Three sticky notes drift off the page: 'Big win! shipped on time', 'Hard call', and 'Lesson'. Wins, hard calls and lessons fade fast, so in a review or interview all that's left is 'I helped with some stuff,' crossed out. An arrow labelled 'with Story' leads to: 'I found the bug that would have broken checkout, the night before launch.' Story keeps the real moments, in your own words, and helps you tell them well."},
+    3:{label:"Features",alt:"Features. Capture real moments: quickly save stories from your work, life and everything in between, shown on a phone with a record button and prompts: meeting with team, overcame a challenge, a funny moment, a lesson learned. Turn them into better stories: AI suggestions for clearer structure, a stronger hook, adding the outcome and matching your audience. Use them everywhere: create posts, prepare for performance reviews, practice interviews, or just reflect."},
+    4:{label:"Use cases",alt:"Use cases. 'Same stories. A brighter you.' Four illustrated panels: be a better communicator, prepare for career growth, reflect and know yourself, build your personal brand."},
+    5:{label:"Your words",alt:"Your words stay yours. 1: Transcribed on your iPhone; voice notes don't need the cloud. 2: AI is opt-in; turn it off and Story still works. 3: Ideas show their sources; each one quotes your words. 4: You check it first; nothing is shared until you confirm. An iPhone shows a voice recording and its transcript, with a padlock. Along the bottom: 'Your story. Your call.'"},
+    6:{label:"Coming soon",short:"CTA",alt:"Be part of what's next. Pine trees and pink mountains. 'Your stories matter. Download Story.' A QR code that opens this zine. iOS, coming soon."},
+    7:{label:"Back cover",alt:"Back cover. STORY, with a 'Vol. 1, Oct 2026' stamp. Printed in two inks: fluorescent pink and medium blue. Story is in development for iPhone. Made with analog-ui. Pine trees and pink mountains along the bottom."}
+  };
+  var LAST = 6, SPREADS = [[2,3],[4,5],[6,7]];
+  var $ = function(id){ return document.getElementById(id); };
+  var spreadEl = $("spread"), imgl = $("imgl"), imgr = $("imgr"), pgl = $("pgl"), pgr = $("pgr");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var narrow = window.matchMedia("(max-width: 760px)");
+  var state = { mode: narrow.matches ? "single" : "spread", s: 0, p: 1, busy: false, chosen: false };
+
+  function src(n, img){
+    img.src = "pages/page-" + n + "-900.webp";
+    img.srcset = "pages/page-" + n + "-900.webp 900w, pages/page-" + n + "-1800.webp 1800w";
+    img.sizes = narrow.matches ? "92vw" : "360px";
+    img.alt = "Page " + (n === 7 ? "back cover" : n) + ". " + PAGES[n].alt;
+  }
+  function preload(list){ list.forEach(function(n){ if (n && PAGES[n]) { var i = new Image(); i.src = "pages/page-" + n + "-900.webp"; } }); }
+  function visible(){ return state.mode === "spread" ? SPREADS[state.s] : [state.p]; }
+
+  function render(){
+    document.body.classList.toggle("single", state.mode === "single");
+    $("mode-spread").setAttribute("aria-pressed", state.mode === "spread");
+    $("mode-single").setAttribute("aria-pressed", state.mode === "single");
+    var v = visible();
+    src(v[0], imgl); pgl.setAttribute("aria-label", "Zoom into page " + (v[0] === 7 ? "back cover" : v[0]) + ", " + PAGES[v[0]].label);
+    if (v[1]) { src(v[1], imgr); pgr.setAttribute("aria-label", "Zoom into page " + (v[1] === 7 ? "back cover" : v[1]) + ", " + PAGES[v[1]].label); } else src(Math.min(v[0] + 1, 7), imgr);
+    $("copyimg").alt = "Page 1. " + PAGES[1].alt;
+    var ind;
+    if (state.mode === "spread") ind = v[1] === 7 ? "Page 6 of 6, and the back cover" : "Pages " + v[0] + "–" + v[1] + " of " + LAST;
+    else ind = state.p === 7 ? "Back cover" : "Page " + state.p + " of " + LAST;
+    $("indicator").textContent = ind;
+    $("prev").disabled = state.mode === "spread" ? state.s === 0 : state.p === 1;
+    $("next").disabled = state.mode === "spread" ? state.s === SPREADS.length - 1 : state.p === 7;
+    Array.prototype.forEach.call(document.querySelectorAll("#thumbs button"), function(b){
+      var n = +b.dataset.n; b.setAttribute("aria-current", v.indexOf(n) >= 0 ? "true" : "false");
+    });
+    if (state.mode === "spread") preload((SPREADS[state.s + 1] || []).concat(SPREADS[state.s - 1] || []));
+    else preload([state.p + 1, state.p - 1]);
+  }
+
+  function leaf(front, back, side){
+    var el = document.createElement("div");
+    el.className = "leaf";
+    el.style[side === "r" ? "left" : "left"] = side === "r" ? "50%" : "0";
+    if (state.mode === "single") el.style.left = "0";
+    el.style.transformOrigin = side === "r" ? "left center" : "right center";
+    el.innerHTML = '<div class="face front"><img alt=""></div><div class="face back"><img alt=""></div>';
+    var f = el.querySelector(".front img"), b = el.querySelector(".back img");
+    f.src = "pages/page-" + front + "-900.webp";
+    if (back) b.src = "pages/page-" + back + "-900.webp"; else b.parentNode.removeChild(b);
+    spreadEl.appendChild(el);
+    return el;
+  }
+  function animate(el, to, done){
+    if (reduce.matches) { el.remove(); done(); return; }
+    void el.offsetWidth;
+    var finished = false;
+    function end(){ if (finished) return; finished = true; el.remove(); done(); }
+    el.addEventListener("transitionend", end, { once: true });
+    setTimeout(end, 900);
+    el.style.transform = to;
+  }
+
+  function go(dir){
+    if (state.busy) return;
+    if (state.mode === "spread") {
+      var ns = state.s + dir;
+      if (ns < 0 || ns >= SPREADS.length) return;
+      var cur = SPREADS[state.s], nxt = SPREADS[ns];
+      state.busy = true;
+      if (dir > 0) {
+        var lf = leaf(cur[1], nxt[0], "r");
+        src(nxt[1], imgr);
+        animate(lf, "rotateY(-180deg)", function(){ state.s = ns; state.busy = false; render(); });
+      } else {
+        var lb = leaf(cur[0], nxt[1], "l");
+        src(nxt[0], imgl);
+        animate(lb, "rotateY(180deg)", function(){ state.s = ns; state.busy = false; render(); });
+      }
+    } else {
+      var np = state.p + dir;
+      if (np < 1 || np > 7) return;
+      state.busy = true;
+      if (dir > 0) {
+        var l1 = leaf(state.p, null, "r"); l1.style.left = "0";
+        src(np, imgl);
+        animate(l1, "rotateY(-180deg)", function(){ state.p = np; state.busy = false; render(); });
+      } else {
+        var l2 = leaf(np, null, "r"); l2.style.left = "0"; l2.style.transform = "rotateY(-180deg)";
+        animate(l2, "rotateY(0deg)", function(){ state.p = np; state.busy = false; render(); });
+      }
+    }
+  }
+  function jump(n){
+    if (state.mode === "spread") {
+      if (n === 1) { openZoom(1); return; }
+      for (var i = 0; i < SPREADS.length; i++) if (SPREADS[i].indexOf(n) >= 0) state.s = i;
+    } else state.p = n;
+    render();
+  }
+  function setMode(m, byUser){
+    if (byUser) state.chosen = true;
+    if (m === state.mode) return;
+    var first = visible()[0];
+    state.mode = m;
+    if (m === "single") state.p = first;
+    else { state.s = 0; for (var i = 0; i < SPREADS.length; i++) if (SPREADS[i].indexOf(first) >= 0) state.s = i; }
+    render();
+  }
+
+  // zoom
+  var dlg = $("zoom"), zscroll = $("zscroll"), zn = 1, opener = null;
+  function showZoom(n){
+    zn = n;
+    zscroll.classList.remove("detail");
+    zscroll.innerHTML = "";
+    var im = document.createElement("img");
+    im.src = "pages/page-" + n + "-1800.webp";
+    im.alt = "Page " + (n === 7 ? "back cover" : n) + ". " + PAGES[n].alt;
+    im.addEventListener("click", function(){ zscroll.classList.toggle("detail"); });
+    zscroll.appendChild(im);
+    $("zlabel").textContent = (n === 7 ? "Back cover" : "Page " + n + " of " + LAST) + ": " + PAGES[n].label;
+    $("zprev").disabled = n === 1; $("znext").disabled = n === 7;
+  }
+  function openZoom(n){ opener = document.activeElement; showZoom(n); dlg.showModal(); $("zclose").focus(); }
+  function closeZoom(){ dlg.close(); }
+  dlg.addEventListener("close", function(){ zscroll.innerHTML = ""; if (opener && opener.focus) opener.focus(); });
+  $("zclose").addEventListener("click", closeZoom);
+  $("zprev").addEventListener("click", function(){ if (zn > 1) showZoom(zn - 1); });
+  $("znext").addEventListener("click", function(){ if (zn < 7) showZoom(zn + 1); });
+  dlg.addEventListener("click", function(e){ if (e.target === zscroll) closeZoom(); });
+
+  // pages: click zooms, swipe flips
+  var swiped = false;
+  [pgl, pgr].forEach(function(b){ b.addEventListener("click", function(){ if (swiped) { swiped = false; return; } openZoom(visible()[b === pgl ? 0 : 1]); }); });
+  $("copy").addEventListener("click", function(){ openZoom(1); });
+  var sx = 0, sy = 0, down = false;
+  spreadEl.addEventListener("pointerdown", function(e){ down = true; sx = e.clientX; sy = e.clientY; swiped = false; });
+  spreadEl.addEventListener("pointerup", function(e){
+    if (!down) return; down = false;
+    var dx = e.clientX - sx, dy = e.clientY - sy;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) { swiped = true; go(dx < 0 ? 1 : -1); }
+  });
+  $("prev").addEventListener("click", function(){ go(-1); });
+  $("next").addEventListener("click", function(){ go(1); });
+  document.addEventListener("keydown", function(e){
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    if (dlg.open) {
+      if (e.key === "ArrowRight" && zn < 7) { showZoom(zn + 1); e.preventDefault(); }
+      if (e.key === "ArrowLeft" && zn > 1) { showZoom(zn - 1); e.preventDefault(); }
+      return;
+    }
+    if (e.key === "ArrowRight") { go(1); e.preventDefault(); }
+    if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); }
+  });
+
+  // panel
+  var th = $("thumbs");
+  for (var n = 1; n <= LAST; n++) {
+    var li = document.createElement("li");
+    li.innerHTML = '<button type="button" data-n="' + n + '" aria-label="Go to page ' + n + ', ' + PAGES[n].label + '"><img src="pages/page-' + n + '-thumb.webp" width="300" height="400" alt=""><span class="lb" aria-hidden="true">' + n + '. ' + (PAGES[n].short || PAGES[n].label) + '</span></button>';
+    li.querySelector("button").addEventListener("click", function(){ jump(+this.dataset.n); });
+    th.appendChild(li);
+  }
+  $("mode-spread").addEventListener("click", function(){ setMode("spread", true); });
+  $("mode-single").addEventListener("click", function(){ setMode("single", true); });
+  $("f-flip").addEventListener("click", function(){ go(1); });
+  $("f-zoom").addEventListener("click", function(){ openZoom(visible()[0]); });
+  $("f-explore").addEventListener("click", function(){ var b = th.querySelector('button[aria-current="true"]') || th.querySelector("button"); b.focus(); });
+  $("f-view").addEventListener("click", function(){ setMode(state.mode === "spread" ? "single" : "spread", true); });
+  narrow.addEventListener("change", function(){ if (!state.chosen) setMode(narrow.matches ? "single" : "spread", false); else render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>

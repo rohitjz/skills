@@ -27,7 +27,7 @@ medium, with its own materials, marks, habits and constraints, that people alrea
 | `blueprint` | Architect's blueprint | Plan, sequence, dependencies | Recipe + example |
 | `museum` | Museum exhibit and wall placards | Explain results with authority | Recipe + example |
 | `lab-notebook` | Engineer's lab notebook (or a flight recorder log) | Reconstruct what happened | Recipe + example |
-| `riso-zine` | Risograph zine | Announce something energetic | Recipe + example |
+| `riso-zine` | Risograph zine | Announce something energetic | Recipe, print pipeline + flipbook example |
 | `receipt` | Receipt and price tags | Show cost or line-by-line value | Recipe + example |
 | `field-journal` | Field researcher's journal | Share voices and observations | Recipe + example |
 | `departure-board` | Departure board and air-traffic flight strips | Track live status | Recipe + example |

@@ -84,7 +84,64 @@ CHECKS_JS = r"""
 INTERACTIONS = {
     # sample name -> function(page) returning a list of issues
     "departure-board-status": lambda page: _board(page),
+    "story-launch-zine": lambda page: _zine(page),
 }
+
+
+def _zine(page):
+    issues = []
+    ind = lambda: page.inner_text("#indicator").strip()
+    settle = lambda: page.wait_for_function("!document.querySelector('.leaf')", timeout=3000)
+    loaded = "() => [...document.querySelectorAll('#imgl,#imgr')].every(i => i.complete && i.naturalWidth > 0)"
+    if ind() != "Pages 2–3 of 6":
+        issues.append(f"desktop should open on the 2–3 spread, got {ind()!r}")
+    page.keyboard.press("ArrowRight"); settle()
+    if ind() != "Pages 4–5 of 6":
+        issues.append(f"ArrowRight should turn to 4–5, got {ind()!r}")
+    page.click("#next"); settle()
+    if "back cover" not in ind():
+        issues.append(f"next should reach the last spread, got {ind()!r}")
+    if not page.is_disabled("#next"):
+        issues.append("next should disable on the last spread")
+    page.wait_for_function(loaded, timeout=3000)
+    page.keyboard.press("ArrowLeft"); settle()
+    if ind() != "Pages 4–5 of 6":
+        issues.append(f"ArrowLeft should turn back, got {ind()!r}")
+    page.click('#thumbs button[data-n="3"]')
+    if ind() != "Pages 2–3 of 6":
+        issues.append(f"thumbnail 3 should jump to 2–3, got {ind()!r}")
+    if page.get_attribute('#thumbs button[data-n="3"]', "aria-current") != "true":
+        issues.append("current thumbnail not marked aria-current")
+    page.click("#mode-single")
+    if page.get_attribute("#mode-single", "aria-pressed") != "true" or ind() != "Page 2 of 6":
+        issues.append(f"single mode should show page 2 alone, got {ind()!r}")
+    if page.is_visible("#pgr"):
+        issues.append("right page still visible in single mode")
+    box = page.locator("#spread").bounding_box()
+    y = box["y"] + box["height"] / 2
+    page.mouse.move(box["x"] + box["width"] * .8, y); page.mouse.down()
+    page.mouse.move(box["x"] + box["width"] * .2, y, steps=6); page.mouse.up(); settle()
+    if ind() != "Page 3 of 6":
+        issues.append(f"swipe left should turn to page 3, got {ind()!r}")
+    page.click("#mode-spread")
+    page.focus("#pgl"); page.keyboard.press("Enter")
+    if not page.evaluate("document.getElementById('zoom').open"):
+        issues.append("Enter on a page should open zoom")
+    else:
+        page.wait_for_function("() => { const i = document.querySelector('#zscroll img'); return i && i.complete && i.naturalWidth > 0 }", timeout=3000)
+        page.keyboard.press("ArrowRight")
+        if "Page 3" not in page.inner_text("#zlabel"):
+            issues.append("ArrowRight inside zoom should show the next page")
+        page.keyboard.press("Escape")
+        if page.evaluate("document.getElementById('zoom').open"):
+            issues.append("Escape should close zoom")
+        elif page.evaluate("document.activeElement.id") != "pgl":
+            issues.append("focus should return to the page after closing zoom")
+    for n in range(1, 8):
+        ok = page.evaluate(f"() => new Promise(r => {{ const i = new Image(); i.onload = () => r(i.naturalWidth === 1800); i.onerror = () => r(false); i.src = 'pages/page-{n}-1800.webp'; }})")
+        if not ok:
+            issues.append(f"page {n} 1800px image missing")
+    return issues
 
 
 def _board(page):

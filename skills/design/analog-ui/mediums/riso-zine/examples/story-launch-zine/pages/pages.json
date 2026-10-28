@@ -1,0 +1,37 @@
+[
+ {
+  "n": 1,
+  "label": "Cover",
+  "alt": "Cover. STORY, in large pink letters. 'Your stories make a bigger you.' A woman writes in a notebook beside a cup and a cat, looking out over pine trees and pink mountains. 'An AI-native app for people who want to communicate better.' Vol. 1, Oct 2026."
+ },
+ {
+  "n": 2,
+  "label": "Introduction",
+  "alt": "Introduction. 'You did the work. Then the story got lost.' Three sticky notes drift off the page: 'Big win! shipped on time', 'Hard call', and 'Lesson'. Wins, hard calls and lessons fade fast, so in a review or interview all that's left is 'I helped with some stuff,' crossed out. An arrow labelled 'with Story' leads to: 'I found the bug that would have broken checkout, the night before launch.' Story keeps the real moments, in your own words, and helps you tell them well."
+ },
+ {
+  "n": 3,
+  "label": "Features",
+  "alt": "Features. Capture real moments: quickly save stories from your work, life and everything in between, shown on a phone with a record button and prompts: meeting with team, overcame a challenge, a funny moment, a lesson learned. Turn them into better stories: AI suggestions for clearer structure, a stronger hook, adding the outcome and matching your audience. Use them everywhere: posts, performance reviews, interviews, or just reflection."
+ },
+ {
+  "n": 4,
+  "label": "Use cases",
+  "alt": "Use cases. 'Same stories. A brighter you.' Four illustrated panels: be a better communicator, prepare for career growth, reflect and know yourself, build your personal brand."
+ },
+ {
+  "n": 5,
+  "label": "Your words",
+  "alt": "Your words stay yours. 1: Transcribed on your iPhone; voice notes don't need the cloud. 2: AI is opt-in; turn it off and Story still works. 3: Ideas show their sources; each one quotes your words. 4: You check it first; nothing is shared until you confirm. An iPhone shows a voice recording and its transcript, with a padlock. Along the bottom: 'Your story. Your call.'"
+ },
+ {
+  "n": 6,
+  "label": "Coming soon",
+  "alt": "Be part of what's next. Pine trees and pink mountains. 'Your stories matter. Download Story.' A QR code that opens this zine. iOS, coming soon."
+ },
+ {
+  "n": 7,
+  "label": "Back cover",
+  "alt": "Back cover. STORY, with a 'Vol. 1, Oct 2026' stamp. Printed in two inks: fluorescent pink and medium blue. Story is in development for iPhone. Made with analog-ui. Pine trees and pink mountains along the bottom."
+ }
+]
